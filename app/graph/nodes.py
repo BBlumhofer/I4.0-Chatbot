@@ -15,6 +15,7 @@ from app.services import neo4j_service as neo4j_svc
 from app.services import session_service as session_svc
 from app.tools.neo4j import SUBMODEL_REGISTRY, VALID_SUBMODELS
 from app.tools import neo4j_tools, opcua_tools, kafka_tools, rag_tools
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -205,16 +206,41 @@ def select_tool_generic(state: AgentState) -> dict[str, Any]:
     confirmation_message = ""
 
     if capability == "opcua":
+        endpoint = (
+            resolved.get("endpoint")
+            or entities.get("endpoint")
+            or settings.opcua_endpoint
+        )
         node_id = (
             resolved.get("node_id")
             or entities.get("node_id")
-            or resolved.get("asset_id", "ns=2;i=1")
+            or "ns=2;i=1"
         )
-        if intent == "read_value":
+        username = entities.get("username")
+        password = entities.get("password")
+
+        if intent == "connect_to_server":
+            tool_name = "connect_to_server"
+            tool_args = {"endpoint": endpoint, "username": username, "password": password}
+        elif intent == "disconnect":
+            tool_name = "disconnect"
+            tool_args = {"endpoint": endpoint}
+            requires_confirmation = True
+            confirmation_message = (
+                f"OPC UA Server '{endpoint}' wirklich trennen?"
+            )
+        elif intent == "browse":
+            tool_name = "browse"
+            tool_args = {"endpoint": endpoint, "node_id": node_id if node_id != "ns=2;i=1" else None}
+        elif intent == "lock_server":
+            tool_name = "lock_server"
+            tool_args = {"endpoint": endpoint}
+        elif intent == "read_value":
             tool_name = "read_value"
+            tool_args = {"endpoint": endpoint, "node_id": node_id}
         else:
             tool_name = "get_live_status"
-        tool_args = {"node_id": node_id}
+            tool_args = {"endpoint": endpoint, "node_id": node_id}
 
     elif capability == "kafka":
         command = {
@@ -332,7 +358,21 @@ def generate_response(state: AgentState) -> dict[str, Any]:
         return {"response": "Keine relevanten Dokumente gefunden."}
 
     if capability == "opcua":
-        return {"response": f"Live-Wert: {tool_result}"}
+        if isinstance(tool_result, dict):
+            status = tool_result.get("status", "")
+            endpoint = tool_result.get("endpoint", "")
+            if status in ("connected", "disconnected", "not_registered", "locked"):
+                return {"response": f"OPC UA Server '{endpoint}': {status}"}
+            # DataValue result
+            value = tool_result.get("value")
+            node_id = tool_result.get("node_id", "")
+            ts = tool_result.get("source_timestamp", "")
+            return {"response": f"Node {node_id} @ {endpoint}: {value} (Zeitstempel: {ts})"}
+        if isinstance(tool_result, list):
+            count = len(tool_result)
+            names = [e.get("display_name") or e.get("node_id") for e in tool_result[:10]]
+            return {"response": f"{count} Knoten gefunden: {', '.join(str(n) for n in names)}"}
+        return {"response": f"OPC UA Ergebnis: {tool_result}"}
 
     if capability == "kafka":
         return {"response": f"Befehl gesendet: {tool_result}"}

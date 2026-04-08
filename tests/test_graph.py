@@ -228,6 +228,7 @@ class TestSelectToolGeneric:
         result = select_tool_generic(state)
         assert result["tool_name"] == "get_live_status"
         assert result["tool_args"]["node_id"] == "ns=2;i=42"
+        assert "endpoint" in result["tool_args"]
 
     def test_kafka_requires_confirmation(self):
         state = _state(
