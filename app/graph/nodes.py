@@ -13,7 +13,7 @@ from app.graph.state import AgentState
 from app.llm import interpreter as llm
 from app.services import neo4j_service as neo4j_svc
 from app.services import session_service as session_svc
-from app.tools.neo4j_tools import SUBMODEL_REGISTRY, VALID_SUBMODELS
+from app.tools.neo4j import SUBMODEL_REGISTRY, VALID_SUBMODELS
 from app.tools import neo4j_tools, opcua_tools, kafka_tools, rag_tools
 
 logger = logging.getLogger(__name__)

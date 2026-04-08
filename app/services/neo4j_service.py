@@ -80,6 +80,22 @@ def get_asset_shell(asset_id: str) -> Optional[dict[str, Any]]:
     return rows[0] if rows else None
 
 
+def get_available_submodels_for_asset(asset_id: str) -> list[dict[str, Any]]:
+    """
+    Return all submodels linked via HAS_SUBMODEL to the shell of *asset_id*.
+
+    Each row contains ``idShort`` and ``semanticId`` so the caller can match
+    against the registered toolset by either field.
+    """
+    cypher = """
+    MATCH (a:Asset {id: $asset_id})
+          <-[:DESCRIBES_ASSET]-(s:Shell)
+          -[:HAS_SUBMODEL]->(sm:Submodel)
+    RETURN sm.idShort AS idShort, sm.semanticId AS semanticId
+    """
+    return run_query(cypher, {"asset_id": asset_id})
+
+
 def get_submodel_elements(asset_id: str, submodel_name: str) -> list[dict[str, Any]]:
     """
     Return all SubmodelElements of a given submodel for an asset.

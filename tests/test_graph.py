@@ -379,7 +379,7 @@ class TestGraphIntegration:
         mock_get_steps = MagicMock(return_value=[{"step": "Bohren", "status": "done"}])
 
         with patch.dict(
-            "app.tools.neo4j_tools.SUBMODEL_REGISTRY",
+            "app.tools.neo4j.SUBMODEL_REGISTRY",
             {"ProductionPlan": {"tools": {"get_steps": mock_get_steps, "get_properties": mock_get_steps}}},
         ):
             graph = build_graph()
