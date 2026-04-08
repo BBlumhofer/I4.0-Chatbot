@@ -92,3 +92,7 @@ def build_graph() -> StateGraph:
     graph.add_edge("generate_response", END)
 
     return graph.compile()
+
+
+# Module-level compiled graph — used by langgraph.json / langgraph dev
+graph = build_graph()

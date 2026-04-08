@@ -9,6 +9,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from langchain_core.messages import AIMessage, HumanMessage
+
 from app.graph.state import AgentState
 from app.llm import interpreter as llm
 from app.services import neo4j_service as neo4j_svc
@@ -26,13 +28,26 @@ def interpret_input(state: AgentState) -> dict[str, Any]:
     """
     Use the LLM to extract intent, capability, submodel and entities
     from the user's raw input.
+
+    ``user_input`` can be provided directly (FastAPI path) or extracted from
+    the last :class:`~langchain_core.messages.HumanMessage` in ``messages``
+    (LangGraph Server / agent-chat-ui path).
     """
+    # Resolve user text from explicit field or last HumanMessage
+    user_input: str = state.get("user_input") or ""
+    if not user_input:
+        for msg in reversed(state.get("messages") or []):
+            if isinstance(msg, HumanMessage):
+                content = msg.content
+                user_input = content if isinstance(content, str) else str(content)
+                break
+
     session_ctx = {}
     if state.get("session_id"):
         session_ctx = session_svc.get_session(state["session_id"])
 
     try:
-        result = llm.interpret(state["user_input"], context=session_ctx)
+        result = llm.interpret(user_input, context=session_ctx)
     except Exception as exc:
         logger.error("LLM interpretation error in node: %s", exc)
         result = {
@@ -43,6 +58,7 @@ def interpret_input(state: AgentState) -> dict[str, Any]:
         }
 
     return {
+        "user_input": user_input,
         "intent": result.get("intent", "unknown"),
         "capability": result.get("capability", "rag"),
         "submodel": result.get("submodel"),
@@ -336,54 +352,55 @@ def execute_tool(state: AgentState) -> dict[str, Any]:
 def generate_response(state: AgentState) -> dict[str, Any]:
     """
     Produce a natural-language response from the tool result.
-    For now, uses a simple template; in production this would call the LLM
-    again with a summarisation prompt.
+    Appends an :class:`~langchain_core.messages.AIMessage` to ``messages``
+    so the agent-chat-ui can render the answer.
     """
     error = state.get("error")
-    if error:
-        return {"response": f"Fehler: {error}"}
-
     tool_result = state.get("tool_result")
     capability = state.get("capability", "")
     intent = state.get("intent", "")
     asset_id = (state.get("resolved_entities") or {}).get("asset_id", "")
 
-    if tool_result is None:
-        return {"response": "Es wurden keine Daten gefunden."}
-
-    if capability == "rag":
+    # ── Compute response text ─────────────────────────────────────────────────
+    if error:
+        text = f"Fehler: {error}"
+    elif tool_result is None:
+        text = "Es wurden keine Daten gefunden."
+    elif capability == "rag":
         if isinstance(tool_result, list) and tool_result:
             snippets = "\n\n".join(d["document"] for d in tool_result[:3])
-            return {"response": f"Relevante Dokumentation:\n\n{snippets}"}
-        return {"response": "Keine relevanten Dokumente gefunden."}
-
-    if capability == "opcua":
+            text = f"Relevante Dokumentation:\n\n{snippets}"
+        else:
+            text = "Keine relevanten Dokumente gefunden."
+    elif capability == "opcua":
         if isinstance(tool_result, dict):
             status = tool_result.get("status", "")
             endpoint = tool_result.get("endpoint", "")
             if status in ("connected", "disconnected", "not_registered", "locked"):
-                return {"response": f"OPC UA Server '{endpoint}': {status}"}
-            # DataValue result
-            value = tool_result.get("value")
-            node_id = tool_result.get("node_id", "")
-            ts = tool_result.get("source_timestamp", "")
-            return {"response": f"Node {node_id} @ {endpoint}: {value} (Zeitstempel: {ts})"}
-        if isinstance(tool_result, list):
+                text = f"OPC UA Server '{endpoint}': {status}"
+            else:
+                value = tool_result.get("value")
+                node_id = tool_result.get("node_id", "")
+                ts = tool_result.get("source_timestamp", "")
+                text = f"Node {node_id} @ {endpoint}: {value} (Zeitstempel: {ts})"
+        elif isinstance(tool_result, list):
             count = len(tool_result)
             names = [e.get("display_name") or e.get("node_id") for e in tool_result[:10]]
-            return {"response": f"{count} Knoten gefunden: {', '.join(str(n) for n in names)}"}
-        return {"response": f"OPC UA Ergebnis: {tool_result}"}
-
-    if capability == "kafka":
-        return {"response": f"Befehl gesendet: {tool_result}"}
-
-    # neo4j
-    if isinstance(tool_result, list):
+            text = f"{count} Knoten gefunden: {', '.join(str(n) for n in names)}"
+        else:
+            text = f"OPC UA Ergebnis: {tool_result}"
+    elif capability == "kafka":
+        text = f"Befehl gesendet: {tool_result}"
+    elif isinstance(tool_result, list):
         count = len(tool_result)
-        return {
-            "response": (
-                f"Ergebnis für {intent} auf Asset {asset_id}: "
-                f"{count} Einträge gefunden.\n{tool_result}"
-            )
-        }
-    return {"response": f"Ergebnis: {tool_result}"}
+        text = (
+            f"Ergebnis für {intent} auf Asset {asset_id}: "
+            f"{count} Einträge gefunden.\n{tool_result}"
+        )
+    else:
+        text = f"Ergebnis: {tool_result}"
+
+    return {
+        "response": text,
+        "messages": [AIMessage(content=text)],
+    }
