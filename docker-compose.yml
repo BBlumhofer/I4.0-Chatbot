@@ -30,14 +30,22 @@ services:
       - chroma
     restart: unless-stopped
 
-  agent-chat-ui:
-    build:
-      context: ./agent-chat-ui
-      dockerfile: Dockerfile
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
     ports:
-      - "3001:3000"
+      - "3000:8080"
     environment:
-      - API_URL=http://api:8000
+      # Disable built-in Ollama integration – we provide our own OpenAI-compatible API.
+      - OLLAMA_BASE_URL=""
+      # Point Open WebUI at our FastAPI backend.
+      - OPENAI_API_BASE_URL=http://api:8000/v1
+      - OPENAI_API_KEY=i4-chatbot
+      # Disable user authentication for local/internal deployments.
+      - WEBUI_AUTH=false
+      # Persist user data and settings across container restarts.
+      - DATA_DIR=/app/backend/data
+    volumes:
+      - open_webui_data:/app/backend/data
     depends_on:
       - api
     restart: unless-stopped
@@ -89,3 +97,5 @@ services:
 volumes:
   neo4j_data:
   chroma_data:
+  open_webui_data:
+

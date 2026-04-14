@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import router
+from app.api.openai_routes import router as openai_router
 
 logging.basicConfig(
     level=logging.INFO,
@@ -32,4 +33,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Custom REST API (existing endpoints: /chat, /chat/stream, /chat/confirm, etc.)
 app.include_router(router)
+
+# OpenAI-compatible API consumed by Open WebUI (/v1/models, /v1/chat/completions)
+app.include_router(openai_router)
