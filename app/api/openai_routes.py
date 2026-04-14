@@ -53,7 +53,7 @@ _MODEL_ID = "i4-chatbot"
 
 # Words that count as "yes" / "no" for the confirmation flow.
 _CONFIRM_YES = {"ja", "yes", "j", "y", "bestätigen", "bestaetigen", "ok", "okay"}
-_CONFIRM_NO = {"nein", "no", "n", "abbrechen", "cancel", "abbort", "abort"}
+_CONFIRM_NO = {"nein", "no", "n", "abbrechen", "cancel", "abort"}
 
 
 # ── Pydantic models ────────────────────────────────────────────────────────────
@@ -250,7 +250,12 @@ def _sync_response(
 
     outcome, payload = result_queue.get(timeout=5)
     if outcome == "error":
-        raise payload
+        logger.exception("Graph execution error for session %s: %s", session_id, payload)
+        return _openai_completion(
+            completion_id,
+            "Ein interner Fehler ist aufgetreten. Bitte versuche es erneut.",
+            created=created,
+        )
 
     final_state: dict[str, Any] = payload
 
@@ -323,8 +328,8 @@ def _stream_response(
             return
 
         if outcome == "error":
-            err_text = f"Fehler: {payload}"
-            yield _openai_chunk(completion_id, err_text, finish_reason="stop", created=created)
+            logger.exception("Graph execution error for session %s: %s", session_id, payload)
+            yield _openai_chunk(completion_id, "Ein interner Fehler ist aufgetreten.", finish_reason="stop", created=created)
             yield "data: [DONE]\n\n"
             return
 
