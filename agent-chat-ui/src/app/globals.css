@@ -42,6 +42,10 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.87 0 0);
   --table-td-bg: #124463; /* Beispiel */
+  --thinking-bg: #faf5ff;
+  --thinking-border: #d8b4fe;
+  --thinking-text: #7e22ce;
+  --thinking-dot: #a855f7;
 }
 
 .dark {

@@ -138,9 +138,11 @@ export function AssistantMessage({
       ) as Array<{ type: string; thinking: string }>
     : [];
 
-  // Inline thinking blocks from <think>…</think> tags (e.g. DeepSeek, Qwen)
+  // Inline thinking from <think> tags — only when there are no structured blocks
   const { thinking: inlineThinking, isThinkingStreaming, text: visibleText } =
-    extractThinkingAndText(contentString);
+    structuredThinkingBlocks.length === 0
+      ? extractThinkingAndText(contentString)
+      : { thinking: null, isThinkingStreaming: false, text: contentString };
 
   const hasToolCalls =
     message &&

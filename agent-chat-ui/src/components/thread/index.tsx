@@ -91,6 +91,8 @@ function OpenGitHubRepo() {
   return null;
 }
 
+const BRAND_NAME = "I4.0 Chatbot";
+
 function TopNav({
   chatHistoryOpen,
   setChatHistoryOpen,
@@ -128,7 +130,7 @@ function TopNav({
           className="h-9 w-auto"
         />
         <span className="hidden text-lg font-semibold sm:block" style={{ color: "var(--primary-color)" }}>
-          I4.0 Chatbot
+          {BRAND_NAME}
         </span>
       </div>
 
