@@ -28,26 +28,56 @@ services:
     depends_on:
       - redis
       - chroma
+    # Health check so dependent services wait until the API is truly ready.
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     restart: unless-stopped
 
+  # ── Open WebUI Pipelines ─────────────────────────────────────────────────────
+  # The Pipelines service is the recommended production integration layer for
+  # custom agents in Open WebUI.  It loads ./pipelines/i4_chatbot_pipeline.py
+  # which translates Open WebUI requests into calls to our LangGraph backend
+  # and forwards status events so users see live thinking indicators.
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    ports:
+      - "9099:9099"
+    volumes:
+      - ./pipelines:/app/pipelines
+    environment:
+      - PIPELINES_DIR=/app/pipelines
+      # Allow the pipeline to reach our API.
+      - API_BASE_URL=http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Open WebUI ───────────────────────────────────────────────────────────────
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     ports:
       - "3000:8080"
     environment:
-      # Disable built-in Ollama integration – we provide our own OpenAI-compatible API.
-      - OLLAMA_BASE_URL=""
-      # Point Open WebUI at our FastAPI backend.
-      - OPENAI_API_BASE_URL=http://api:8000/v1
-      - OPENAI_API_KEY=i4-chatbot
+      # Disable the built-in Ollama integration – we only use our custom backend.
+      - ENABLE_OLLAMA_API=false
+      # Point Open WebUI at the Pipelines service (OpenAI-compatible gateway).
+      # The Pipelines service connects to our FastAPI backend internally.
+      - OPENAI_API_BASE_URLS=http://pipelines:9099
+      # Default Pipelines authentication key.
+      - OPENAI_API_KEYS=0p3n-w3bu!
       # Disable user authentication for local/internal deployments.
       - WEBUI_AUTH=false
-      # Persist user data and settings across container restarts.
+      # Persist settings and conversation history across restarts.
       - DATA_DIR=/app/backend/data
     volumes:
       - open_webui_data:/app/backend/data
     depends_on:
-      - api
+      - pipelines
     restart: unless-stopped
 
  # neo4j:
