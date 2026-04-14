@@ -1,0 +1,13 @@
+
+NS_DI_URI = "http://opcfoundation.org/UA/DI/"
+NS_RSL_URI = "http://opcfoundation.org/UA/RSL/"
+NS_MACHINERY_URI = "http://opcfoundation.org/UA/Machinery/"
+NS_SKILL_SET_URI = "http://smartfactory.de/UA/SkillSet"
+NS_MACHINE_SET_URI = "http://smartfactory.de/UA/MachineSet"
+NS_ROBOTICS_URI = "http://opcfoundation.org/UA/Robotics/"
+NS_IA_URI = "http://opcfoundation.org/UA/IA/"
+NS_MACHINE_TOOLS_URI = "http://opcfoundation.org/UA/MachineTool/"
+NS_LASER_SYSTEMS_URI = "http://opcfoundation.org/UA/LaserSystems/"
+NS_ECM_URI = "http://opcfoundation.org/UA/ECM/"
+NS_ECM_SFKL_URI = "http://smartfactory.de/UA/EnergyConsumptionManagement"
+NS_SFM_V3_URI = "http://smartfactory.de/UA/SFM/"

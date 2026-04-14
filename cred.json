@@ -1,0 +1,9 @@
+{
+  "servers": [
+    {
+      "endpoint": "opc.tcp://172.17.54.3:4842",
+      "username": "operator",
+      "password": "operator"
+    }
+  ]
+}

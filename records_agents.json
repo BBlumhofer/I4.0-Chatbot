@@ -1,0 +1,1675 @@
+﻿[
+  {
+    "nodeProps": {
+      "shell_id": "HMS2",
+      "embedding_error_count": 5,
+      "assetType": "holon",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/assets/HMS2"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "HMS2",
+      "embedding_error_count": 5,
+      "embedding_last_error_at": "2026-04-08T19:59:48.949000000Z",
+      "embedding_error": "missing_text"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P_https://smartfactory.de/shells/Xrk3t_VQPN"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "PH2",
+      "embedding_error_count": 5,
+      "assetType": "holon",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://www.smartfactory.de/asset/PH2"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "PH2",
+      "embedding_error_count": 5,
+      "original_id": "PH2",
+      "subs": [
+        "manufacture-product-internal",
+        "manufacture-product-external",
+        "ressource_holon-response"
+      ],
+      "name": "",
+      "last_updated": 1775726772712,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "c8cba216b92ff82a88a5447edb63367330bb9ce096c307d46013be4d0948a0df",
+      "embedding_error": "missing_text",
+      "type": "ProductHolon",
+      "url": "http://172.17.100.197:8000/shells/UEgy"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P26",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "P26",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775722983119,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "8aafadcd37cdb494e3b7eccb9c3600062c2f63acbf0c4ac7a8e24a9971823348",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDI2"
+    }
+  },
+  {
+    "nodeProps": {
+      "embedding_error_count": 0,
+      "original_id": "P25",
+      "embedding_provider": "ollama",
+      "embedding_model": "embeddinggemma:latest",
+      "checksum": "a5ad1e888ca570f1bda487509726d1c044b523a4e77311df3e59d8b4b7aa0625",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDI1",
+      "id": "P25",
+      "ref": "RH2",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775727109517
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "T2",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "T2",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775727286581,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "99eeec56120046b427d9ad7b70c1f7edfb073979ac9bfaa7597ac5c79b5a1dac",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/VDI"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P17",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "P17",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775727264710,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "9593b5e43db064b3423ffd664d886216d14306e3be913a1430e9fc9074877359",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDE3"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P18",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "P18",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775727087034,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "8e823c8af545476dc0dad2405318ea4ed0d045d1e98867d43cb91b7d4f99887d",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDE4"
+    }
+  },
+  {
+    "nodeProps": {
+      "embedding_error_count": 0,
+      "original_id": "P13",
+      "embedding_provider": "ollama",
+      "embedding_model": "embeddinggemma:latest",
+      "checksum": "03e7215c098c86198f426a3c0c04131ae0a1220beec57df002fe73c152a4e938",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDEz",
+      "id": "P13",
+      "ref": "RH2",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775725575724
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P3",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "P3",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775726315622,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "bd0132ee44d3d316e614fab27b209b35c4c7c22620365d389542c1b02046d2fc",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDM"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P24",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "P24",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775726995135,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "1b5e9eb11c79a8feb672a3a759c65bc22b3dd94e6a270f81899c6fc015c772fb",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDI0"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P14",
+      "ref": "RH2",
+      "original_id": "P14",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775725553811,
+      "checksum": "6c61ab4eda7eb1a0bb8c3939ee160f8e8d9f8458ea684aab1f35a874544ccd48",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDE0"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P12",
+      "ref": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "P12",
+      "subs": [
+        "holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "Request_Agent",
+        "AskAgent_Type",
+        "AskAgent_Instance",
+        "RequestNeighborCap",
+        "RequestNeighborCapUpdate",
+        "Execute_Action",
+        "Terminate_Action",
+        "Done_Action",
+        "Delete_Msg",
+        "Change_Idle_Mode"
+      ],
+      "name": "",
+      "last_updated": 1775665465586,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "8a0f6c5c8c0ace6f266339eb9e7475ea19e7da7ec85f45a3f8bf22450d4203fd",
+      "embedding_error": "missing_text",
+      "type": "ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/UDEy"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "RH2",
+      "embedding_error_count": 5,
+      "assetType": "holon",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://www.smartfactory.de/asset/RH2"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P26_Storage_ModuleStorage",
+      "name": "ModuleStorage",
+      "created_at": 1775722983128,
+      "last_updated": 1775722983128
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "RH2",
+      "embedding_error_count": 5,
+      "original_id": "RH2",
+      "subs": [
+        "ressource_holon-request",
+        "Kill_Agent",
+        "Spawn_Agent",
+        "Restart_Agent",
+        "Update_Agent_Topology",
+        "UpdateState",
+        "Step_Update",
+        "AnswerAgent",
+        "AgentKilled_External"
+      ],
+      "name": "",
+      "last_updated": 1775727984604,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "checksum": "597a7430adb36a093f3ae705f8276f5c06085b8f14eacb64a1ac05663937e4a0",
+      "embedding_error": "missing_text",
+      "type": "Island_ResourceHolon",
+      "url": "http://172.17.100.197:8000/shells/Ukgy"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P26",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/assets/P26"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P25",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P25"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P25_Storage_Monitoring",
+      "name": "Monitoring",
+      "created_at": 1775723174929,
+      "last_updated": 1775727109532
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "T2_Storage_",
+      "embedding_error_count": 5,
+      "name": "",
+      "created_at": 1775665196245,
+      "last_updated": 1775727286596,
+      "embedding_last_error_at": "2026-04-08T20:16:35.513000000Z",
+      "embedding_error": "missing_text"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "Delivery.Human_H2_Gate1",
+      "embedding_error_count": 0,
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "embedding_provider": "ollama",
+      "embedding_model": "embeddinggemma:latest"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "T2",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/assets/T2"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P17_Storage_ModuleStorage",
+      "embedding_error_count": 0,
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "name": "ModuleStorage",
+      "embedding_provider": "ollama",
+      "created_at": 1775665478690,
+      "last_updated": 1775727264722,
+      "embedding_model": "embeddinggemma:latest"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P17",
+      "embedding_error_count": 5,
+      "assetType": "Resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P17"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P18_Storage_RFIDStorage",
+      "embedding_error_count": 0,
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "name": "RFIDStorage",
+      "embedding_provider": "ollama",
+      "created_at": 1775665194346,
+      "last_updated": 1775727087043,
+      "embedding_model": "embeddinggemma:latest"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P18",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P18"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P13",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P13"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P13_Storage_RFID Storage",
+      "name": "RFID Storage",
+      "created_at": 1775723242106,
+      "last_updated": 1775725575733
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "T1"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P3",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P3"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P24_Storage_RFIDStorage",
+      "embedding_error_count": 0,
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "name": "RFIDStorage",
+      "embedding_provider": "ollama",
+      "created_at": 1775665197660,
+      "last_updated": 1775726995300,
+      "embedding_model": "embeddinggemma:latest"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P24_Storage_Storage",
+      "embedding_error_count": 0,
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "name": "Storage",
+      "embedding_provider": "ollama",
+      "created_at": 1775665197489,
+      "last_updated": 1775726995183,
+      "embedding_model": "embeddinggemma:latest"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P24",
+      "embedding_error_count": 5,
+      "assetType": "Resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P24"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P14",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P14"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "P12",
+      "embedding_error_count": 5,
+      "assetType": "resource",
+      "embedding_last_error_at": "2026-04-08T20:06:24.942000000Z",
+      "embedding_error": "missing_text",
+      "assetKind": "Instance",
+      "globalAssetId": "https://smartfactory.de/asset/P12"
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P26_Storage_ModuleStorage_Slot_1",
+      "index": 1,
+      "product_id": "",
+      "created_at": 1775722983167,
+      "last_updated": 1775722983167,
+      "product_type": "",
+      "is_empty": true,
+      "carrier_id": "",
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P26_Storage_ModuleStorage_Slot_0",
+      "index": 0,
+      "product_id": "",
+      "created_at": 1775722983137,
+      "last_updated": 1775722983137,
+      "product_type": "",
+      "is_empty": true,
+      "carrier_id": "",
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P25_Storage_Monitoring_Slot_0",
+      "index": 0,
+      "product_id": "",
+      "created_at": 1775723174935,
+      "last_updated": 1775727109539,
+      "product_type": "",
+      "is_empty": true,
+      "carrier_id": "",
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 9,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_9",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665196315,
+      "last_updated": 1775727286621,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 8,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_8",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665196313,
+      "last_updated": 1775727286619,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 7,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_7",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665196312,
+      "last_updated": 1775727286617,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 6,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_6",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665196310,
+      "last_updated": 1775727286615,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 5,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_5",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665196308,
+      "last_updated": 1775727286613,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 4,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_4",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665196306,
+      "last_updated": 1775727286611,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 3,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_3",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665196304,
+      "last_updated": 1775727286609,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 2,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_2",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665196281,
+      "last_updated": 1775727286607,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 1,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_1",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665196279,
+      "last_updated": 1775727286604,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 0,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "T2_Storage__Slot_0",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665196277,
+      "last_updated": 1775727286602,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 3,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P17_Storage_ModuleStorage_Slot_3",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665478723,
+      "last_updated": 1775727264756,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 2,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P17_Storage_ModuleStorage_Slot_2",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665478721,
+      "last_updated": 1775727264754,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 1,
+      "embedding_error_count": 0,
+      "product_id": "https://smartfactory.de/shells/8zlRohOh9s",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_A_15",
+      "id": "P17_Storage_ModuleStorage_Slot_1",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665478719,
+      "last_updated": 1775727264751,
+      "carrier_type": "WST_A"
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 0,
+      "embedding_error_count": 0,
+      "product_id": "https://smartfactory.de/shells/piTTA37vZd",
+      "embedding_provider": "ollama",
+      "product_type": "Semitrailer_Chassis",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_A_11",
+      "id": "P17_Storage_ModuleStorage_Slot_0",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665478697,
+      "last_updated": 1775727264734,
+      "carrier_type": "WST_A"
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 3,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P18_Storage_RFIDStorage_Slot_3",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665194469,
+      "last_updated": 1775727087072,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 2,
+      "embedding_error_count": 0,
+      "product_id": "https://smartfactory.de/shells/NNW6W53oZb",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_G_15",
+      "id": "P18_Storage_RFIDStorage_Slot_2",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665194467,
+      "last_updated": 1775727087056,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 1,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_8",
+      "id": "P18_Storage_RFIDStorage_Slot_1",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665194438,
+      "last_updated": 1775727087053,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 0,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P18_Storage_RFIDStorage_Slot_0",
+      "embedding_updated_at": "2026-04-08T20:16:35.615000000Z",
+      "created_at": 1775665194418,
+      "last_updated": 1775727087051,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P13_Storage_RFID Storage_Slot_2",
+      "index": 2,
+      "product_id": "",
+      "created_at": 1775723242120,
+      "last_updated": 1775725575745,
+      "product_type": "",
+      "is_empty": true,
+      "carrier_id": "",
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P13_Storage_RFID Storage_Slot_1",
+      "index": 1,
+      "product_id": "",
+      "created_at": 1775723242117,
+      "last_updated": 1775725575743,
+      "product_type": "",
+      "is_empty": true,
+      "carrier_id": "",
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "id": "P13_Storage_RFID Storage_Slot_0",
+      "index": 0,
+      "product_id": "",
+      "created_at": 1775723242114,
+      "last_updated": 1775725575740,
+      "product_type": "",
+      "is_empty": true,
+      "carrier_id": "",
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 1,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_RFIDStorage_Slot_1",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197669,
+      "last_updated": 1775726995309,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 0,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_RFIDStorage_Slot_0",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197667,
+      "last_updated": 1775726995306,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 34,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_21",
+      "id": "P24_Storage_Storage_Slot_34",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197658,
+      "last_updated": 1775726995298,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 33,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_33",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197656,
+      "last_updated": 1775726995296,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 32,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_32",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197654,
+      "last_updated": 1775726995294,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 31,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_11",
+      "id": "P24_Storage_Storage_Slot_31",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197652,
+      "last_updated": 1775726995292,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 30,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_30",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197650,
+      "last_updated": 1775726995290,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 29,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_29",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197648,
+      "last_updated": 1775726995288,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 28,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Cab_Chassis",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_A_18",
+      "id": "P24_Storage_Storage_Slot_28",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197646,
+      "last_updated": 1775726995286,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 27,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_27",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197644,
+      "last_updated": 1775726995284,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 26,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_26",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197642,
+      "last_updated": 1775726995281,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 25,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_25",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197640,
+      "last_updated": 1775726995279,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 24,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_13",
+      "id": "P24_Storage_Storage_Slot_24",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197638,
+      "last_updated": 1775726995277,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 23,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_17",
+      "id": "P24_Storage_Storage_Slot_23",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197636,
+      "last_updated": 1775726995275,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 22,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Cab_B_Red",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_10",
+      "id": "P24_Storage_Storage_Slot_22",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197634,
+      "last_updated": 1775726995272,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 21,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_21",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197632,
+      "last_updated": 1775726995270,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 20,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_20",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197630,
+      "last_updated": 1775726995268,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 19,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_19",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197628,
+      "last_updated": 1775726995265,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 18,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_18",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197625,
+      "last_updated": 1775726995263,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 17,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_7",
+      "id": "P24_Storage_Storage_Slot_17",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197623,
+      "last_updated": 1775726995261,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 16,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_16",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197621,
+      "last_updated": 1775726995259,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 15,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Cab_Chassis",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_A_6",
+      "id": "P24_Storage_Storage_Slot_15",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197619,
+      "last_updated": 1775726995257,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 14,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Cab_B_Red",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_4",
+      "id": "P24_Storage_Storage_Slot_14",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197616,
+      "last_updated": 1775726995255,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 13,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_13",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197613,
+      "last_updated": 1775726995253,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 12,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Cab_A_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_1",
+      "id": "P24_Storage_Storage_Slot_12",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197611,
+      "last_updated": 1775726995251,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 11,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_11",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197608,
+      "last_updated": 1775726995249,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 10,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_10",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197581,
+      "last_updated": 1775726995246,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 9,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_9",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197579,
+      "last_updated": 1775726995245,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 8,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "Trailer_Body_Blue",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": false,
+      "carrier_id": "WST_B_14",
+      "id": "P24_Storage_Storage_Slot_8",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197577,
+      "last_updated": 1775726995242,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 7,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_7",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197574,
+      "last_updated": 1775726995240,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 6,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_6",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197572,
+      "last_updated": 1775726995239,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 5,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_5",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197570,
+      "last_updated": 1775726995237,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 4,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_4",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197567,
+      "last_updated": 1775726995234,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 3,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_3",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197561,
+      "last_updated": 1775726995231,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 2,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_2",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197558,
+      "last_updated": 1775726995228,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 1,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_1",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197555,
+      "last_updated": 1775726995226,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "index": 0,
+      "embedding_error_count": 0,
+      "product_id": "",
+      "embedding_provider": "ollama",
+      "product_type": "",
+      "embedding_model": "embeddinggemma:latest",
+      "is_empty": true,
+      "carrier_id": "",
+      "id": "P24_Storage_Storage_Slot_0",
+      "embedding_updated_at": "2026-04-08T20:16:39.901000000Z",
+      "created_at": 1775665197528,
+      "last_updated": 1775726995222,
+      "carrier_type": ""
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/L1u6CV5fIF",
+      "embedding_error_count": 5,
+      "embedding_last_error_at": "2026-04-08T20:16:43.651000000Z",
+      "embedding_error": "missing_text"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/UXzUVkabzo",
+      "embedding_error_count": 5,
+      "embedding_last_error_at": "2026-04-08T20:16:43.651000000Z",
+      "embedding_error": "missing_text"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/6pzrjosy3s",
+      "embedding_error_count": 5,
+      "embedding_last_error_at": "2026-04-08T20:16:43.651000000Z",
+      "embedding_error": "missing_text"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/Xrk3t_VQPN"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/8zlRohOh9s"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/piTTA37vZd"
+    }
+  },
+  {
+    "nodeProps": {
+      "shell_id": "https://smartfactory.de/shells/NNW6W53oZb"
+    }
+  }
+]
