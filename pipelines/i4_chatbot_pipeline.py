@@ -148,9 +148,9 @@ class Pipeline:
         """
         payload = {"message": user_message, "session_id": session_id}
 
-        await self._emit_status(event_emitter, "Verbinde mit I4.0 Backend…")
-
         try:
+            await self._emit_status(event_emitter, "Verbinde mit I4.0 Backend…")
+
             async with httpx.AsyncClient(timeout=self.valves.API_TIMEOUT) as client:
                 async with client.stream(
                     "POST",
@@ -160,6 +160,7 @@ class Pipeline:
                     response.raise_for_status()
 
                     current_event: str = ""
+                    text_yielded: bool = False
 
                     async for raw_line in response.aiter_lines():
                         line = raw_line.strip()
@@ -188,7 +189,10 @@ class Pipeline:
 
                         elif current_event == "chunk":
                             # Partial answer text – stream to the user.
-                            yield data.get("delta", "")
+                            chunk = data.get("delta", "")
+                            if chunk:
+                                text_yielded = True
+                            yield chunk
 
                         elif current_event == "confirmation":
                             # The backend needs user confirmation (e.g. Kafka).
@@ -197,7 +201,10 @@ class Pipeline:
                                 event_emitter,
                                 "Bestätigung erforderlich – bitte mit 'ja' oder 'nein' antworten",
                             )
-                            yield data.get("message", "")
+                            msg = data.get("message", "")
+                            if msg:
+                                text_yielded = True
+                            yield msg
 
                         elif current_event == "final":
                             if data.get("requires_confirmation"):
@@ -205,12 +212,23 @@ class Pipeline:
                             await self._emit_status(
                                 event_emitter, "Abgeschlossen", done=True
                             )
+                            # Fallback: if no chunks arrived, yield the full
+                            # response text that the backend always includes in
+                            # the final event so the user is never left with a
+                            # blank reply.
+                            if not text_yielded:
+                                fallback = data.get("response", "")
+                                if fallback:
+                                    text_yielded = True
+                                    yield fallback
 
                         elif current_event == "error":
                             await self._emit_status(
                                 event_emitter, "Fehler aufgetreten", done=True
                             )
-                            yield f"\n\n⚠️ {data.get('message', 'Unbekannter Fehler')}"
+                            err_msg = f"\n\n⚠️ {data.get('message', 'Unbekannter Fehler')}"
+                            text_yielded = True
+                            yield err_msg
 
         except httpx.TimeoutException:
             await self._emit_status(event_emitter, "Zeitüberschreitung", done=True)
@@ -250,23 +268,28 @@ class Pipeline:
         sent via ``__event_emitter__`` and shown as live spinner lines above the
         message.
         """
-        # Open WebUI sends a stable chat-id for the whole conversation.
-        session_id: str = body.get("chat_id") or str(uuid.uuid4())
+        try:
+            # Open WebUI sends a stable chat-id for the whole conversation.
+            session_id: str = body.get("chat_id") or str(uuid.uuid4())
 
-        if not user_message:
-            yield "Bitte gib eine Nachricht ein."
-            return
-
-        # ── Confirmation short-circuit ─────────────────────────────────────────
-        if session_id in self._pending_sessions:
-            reply = self._is_confirmation_reply(user_message)
-            if reply is not None:
-                async for chunk in self._handle_confirmation(
-                    session_id, reply, __event_emitter__
-                ):
-                    yield chunk
+            if not user_message:
+                yield "Bitte gib eine Nachricht ein."
                 return
 
-        # ── Normal conversation ────────────────────────────────────────────────
-        async for chunk in self._stream_chat(session_id, user_message, __event_emitter__):
-            yield chunk
+            # ── Confirmation short-circuit ─────────────────────────────────────
+            if session_id in self._pending_sessions:
+                reply = self._is_confirmation_reply(user_message)
+                if reply is not None:
+                    async for chunk in self._handle_confirmation(
+                        session_id, reply, __event_emitter__
+                    ):
+                        yield chunk
+                    return
+
+            # ── Normal conversation ────────────────────────────────────────────
+            async for chunk in self._stream_chat(session_id, user_message, __event_emitter__):
+                yield chunk
+
+        except Exception as exc:
+            logger.exception("Unhandled error in pipe(): %s", exc)
+            yield "\n\n⚠️ Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut."
