@@ -28,6 +28,8 @@ from __future__ import annotations
 
 import json
 import logging
+import queue
+import threading
 import time
 import uuid
 from typing import Any, Optional
@@ -189,9 +191,12 @@ def chat_completions(req: ChatCompletionRequest, request: Request):
     confirmation_reply = _is_confirmation_reply(user_text)
     if confirmation_reply is not None and _has_pending_confirmation(session_id):
         if confirmation_reply:
-            success, response_text = execute_confirmed_tool(session_id)
-            if not success:
-                response_text = f"Fehler: {response_text}"
+            success, _detail = execute_confirmed_tool(session_id)
+            if success:
+                response_text = _detail
+            else:
+                logger.warning("Confirmed tool execution failed for session %s: %s", session_id, _detail)
+                response_text = "Ausführung fehlgeschlagen. Bitte versuche es erneut."
         else:
             cancel_pending_tool(session_id)
             response_text = "Aktion abgebrochen."
@@ -232,10 +237,7 @@ def _sync_response(
     created: int,
 ) -> dict[str, Any]:
     """Run the graph synchronously and return an OpenAI completion object."""
-    import queue as _queue
-    import threading as _threading
-
-    result_queue: _queue.Queue = _queue.Queue(maxsize=1)
+    result_queue: queue.Queue = queue.Queue(maxsize=1)
 
     def worker():
         try:
@@ -244,7 +246,7 @@ def _sync_response(
         except Exception as exc:
             result_queue.put(("error", exc))
 
-    thread = _threading.Thread(target=worker, daemon=True)
+    thread = threading.Thread(target=worker, daemon=True)
     thread.start()
     thread.join(timeout=300)
 
@@ -277,11 +279,8 @@ def _stream_response(
     created: int,
 ) -> StreamingResponse:
     """Run the graph with status callbacks and emit OpenAI SSE chunks."""
-    import queue as _queue
-    import threading as _threading
-
-    status_queue: _queue.Queue[str] = _queue.Queue()
-    result_queue: _queue.Queue = _queue.Queue(maxsize=1)
+    status_queue: queue.Queue[str] = queue.Queue()
+    result_queue: queue.Queue = queue.Queue(maxsize=1)
 
     def on_status(message: str) -> None:
         status_queue.put(message)
@@ -294,7 +293,7 @@ def _stream_response(
             result_queue.put(("error", exc))
 
     def event_generator():
-        thread = _threading.Thread(target=worker, daemon=True)
+        thread = threading.Thread(target=worker, daemon=True)
         thread.start()
 
         # Emit role-opening delta first.
@@ -310,19 +309,19 @@ def _stream_response(
                 # We keep the visible assistant stream clean by NOT yielding
                 # status text as normal content chunks.
                 logger.debug("Graph status [%s]: %s", session_id, status)
-            except _queue.Empty:
+            except queue.Empty:
                 continue
 
         # Drain any remaining status messages.
         while True:
             try:
                 status_queue.get_nowait()
-            except _queue.Empty:
+            except queue.Empty:
                 break
 
         try:
             outcome, payload = result_queue.get(timeout=5)
-        except _queue.Empty:
+        except queue.Empty:
             yield _openai_chunk(completion_id, "Zeitüberschreitung.", finish_reason="stop", created=created)
             yield "data: [DONE]\n\n"
             return

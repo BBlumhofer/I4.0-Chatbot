@@ -52,6 +52,8 @@ services:
       - PIPELINES_DIR=/app/pipelines
       # Allow the pipeline to reach our API.
       - API_BASE_URL=http://api:8000
+      # Override PIPELINES_API_KEY on the host for a non-default secret.
+      - PIPELINES_API_KEY=${PIPELINES_API_KEY:-0p3n-w3bu!}
     depends_on:
       api:
         condition: service_healthy
@@ -68,8 +70,9 @@ services:
       # Point Open WebUI at the Pipelines service (OpenAI-compatible gateway).
       # The Pipelines service connects to our FastAPI backend internally.
       - OPENAI_API_BASE_URLS=http://pipelines:9099
-      # Default Pipelines authentication key.
-      - OPENAI_API_KEYS=0p3n-w3bu!
+      # Default Pipelines authentication key.  Override in production via
+      # the PIPELINES_API_KEY environment variable on the host.
+      - OPENAI_API_KEYS=${PIPELINES_API_KEY:-0p3n-w3bu!}
       # Disable user authentication for local/internal deployments.
       - WEBUI_AUTH=false
       # Persist settings and conversation history across restarts.

@@ -16,7 +16,7 @@ description: |
   Confirmation requests (ja / nein) are routed to /chat/confirm automatically.
 
 version: 1.0
-licence: MIT
+license: MIT
 """
 from __future__ import annotations
 
