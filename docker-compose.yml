@@ -57,6 +57,12 @@ services:
     depends_on:
       api:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9099/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     restart: unless-stopped
 
   # ── Open WebUI ───────────────────────────────────────────────────────────────
@@ -80,7 +86,8 @@ services:
     volumes:
       - open_webui_data:/app/backend/data
     depends_on:
-      - pipelines
+      pipelines:
+        condition: service_healthy
     restart: unless-stopped
 
  # neo4j:
