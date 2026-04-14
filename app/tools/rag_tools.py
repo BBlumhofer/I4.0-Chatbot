@@ -11,7 +11,7 @@ from app.services import rag_service as svc
 logger = logging.getLogger(__name__)
 
 
-def search_docs(query: str, n_results: int = 5) -> list[dict[str, Any]]:
+def search_docs(query: str, n_results: int | None = None) -> list[dict[str, Any]]:
     """Search plant documentation for *query*."""
     return svc.search_docs(query, n_results=n_results)
 

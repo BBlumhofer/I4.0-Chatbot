@@ -386,15 +386,15 @@ export function Thread() {
                       />
 
                       <div className="flex items-center gap-6 p-2 pt-4">
-                        <TooltipIconButton
-                          size="lg"
-                          className="p-4"
-                          tooltip="New thread"
+                        <Button
+                          type="button"
                           variant="ghost"
                           onClick={() => setThreadId(null)}
+                          className="flex items-center gap-2"
                         >
                           <SquarePen className="size-5" />
-                        </TooltipIconButton>
+                          Neuer Chat
+                        </Button>
                         <div>
                           <div className="flex items-center space-x-2">
                             <Switch

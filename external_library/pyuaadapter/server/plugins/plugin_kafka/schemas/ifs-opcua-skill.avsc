@@ -1,0 +1,61 @@
+{
+  "namespace": "dfki.ifs.sensor.opcua",
+  "type": "record",
+  "name": "skill",
+  "doc": "Information about one skill of a module.",
+  "fields": [
+    {
+      "name": "state",
+      "doc": "State of the skill.",
+      "type": {
+        "type": "enum",
+        "name": "states",
+        "doc": "READY: skill is ready to be executed; RUNNING: skill is currently being executed; HALTED: skill is halted, either due to an manually stopped, error or E-Stop; SUSPENDED: skill is paused and can be resumed; COMPLETED: skill is finished; STARTING: skill is starting up",
+        "symbols": ["READY", "RUNNING", "HALTED", "SUSPENDED", "COMPLETED", "STARTING", "INVALID"],
+        "default": "INVALID"
+      }
+    },
+    {
+      "name": "parameters",
+      "doc": "Parameters of the skill; not all skills have them.",
+      "type": [
+        "null",
+        {
+          "type": "map",
+          "values": [
+            "string",
+            "float",
+            "int",
+            "boolean",
+            "bytes"
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "results",
+      "doc": "Results of the skill; not all skills return results.",
+      "type": [
+        "null",
+        {
+          "type": "map",
+          "values": [
+            "null",
+            "string",
+            "float",
+            "int",
+            "boolean",
+            "bytes"
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "source_timestamp",
+      "doc": "timestamp of the source; to track differences between source- & kafka-timestamps",
+      "type": "long"
+    }
+  ]
+}

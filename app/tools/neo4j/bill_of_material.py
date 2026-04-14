@@ -10,16 +10,23 @@ from typing import Any
 
 from app.services import neo4j_service as db
 from app.tools.neo4j._base import SubmodelToolset, register_submodel
+from app.tools.neo4j._query import asset_match_clause
 
 
 def get_parts(asset_id: str) -> list[dict[str, Any]]:
     """Return direct BOM entries (parts, quantities) for an asset."""
     cypher = """
-    MATCH (a:Asset {id: $asset_id})
-          <-[:DESCRIBES_ASSET]-(s:Shell)
-          -[:HAS_SUBMODEL]->(sm:Submodel {idShort: 'BillOfMaterial'})
-          -[:HAS_ELEMENT]->(el:SubmodelElement)
-    RETURN el.idShort AS part, el.value AS value, el.quantity AS quantity
+        MATCH (a:Asset)
+        """ + asset_match_clause() + """
+        WITH a LIMIT 1
+        MATCH (a)<-[:DESCRIBES_ASSET]-(s:Shell)
+            -[:HAS_SUBMODEL]->(sm:Submodel {idShort: 'BillOfMaterial'})
+            -[:HAS_ELEMENT]->(el)
+    OPTIONAL MATCH (el)-[:HAS_ELEMENT*0..2]->(q:Property)
+    WHERE toLower(q.idShort) = 'quantity'
+    RETURN el.idShort AS part,
+         el.value AS value,
+         head(collect(q.value)) AS quantity
     """
     return db.run_query(cypher, {"asset_id": asset_id})
 

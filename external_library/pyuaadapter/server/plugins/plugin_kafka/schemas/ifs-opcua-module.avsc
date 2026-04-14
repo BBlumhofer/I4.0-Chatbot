@@ -1,0 +1,92 @@
+{
+  "namespace": "dfki.ifs.sensor.opcua",
+  "type": "record",
+  "name": "module",
+  "doc": "Information about one whole module.",
+  "fields": [
+    {
+      "name": "state",
+      "doc": "State of the module.",
+      "type": {
+        "type": "enum",
+        "name": "states",
+        "symbols": [
+          "Halted",
+          "Ready",
+          "Running",
+          "Suspended"
+        ],
+        "default": "Invalid"
+      }
+    },
+    {
+      "name": "occupier",
+      "doc": "username of the current occupier if any, otherwise empty",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "resources",
+      "doc": "Information about resources available to the module",
+      "type": [
+        "null",
+        {
+          "type": "map",
+          "values": {
+            "type": "record",
+            "name": "Resource",
+            "fields": [
+              {
+                "name": "color",
+                "doc": "Color of the resource",
+                "type": {
+                  "type": "enum",
+                  "name": "colors",
+                  "symbols": ["Blue", "Red", "Invalid"],
+                  "default": "Invalid"
+                }
+              },
+              {
+                "name": "type",
+                "doc": "Type of the resource",
+                "type": {
+                  "type": "enum",
+                  "name": "types",
+                  "symbols": [
+                    "UsbPenDrive",
+                    "NubStone",
+                    "FlatStone",
+                    "Invalid"
+                  ],
+                  "default": "Invalid"
+                }
+              },
+              {
+                "name": "size",
+                "doc": "Size of the resource",
+                "type": {
+                  "type": "enum",
+                  "name": "sizes",
+                  "symbols": ["_2x2", "_2x3", "_2x4", "Invalid"],
+                  "default": "Invalid"
+                }
+              },
+              {
+                "name": "amount",
+                "doc": "Amount of the resource in storage",
+                "type": "int",
+                "default": -1
+              }
+            ]
+          }
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "source_timestamp",
+      "doc": "timestamp of the source; to track differences between source- & kafka-timestamps",
+      "type": "long"
+    }
+  ]
+}

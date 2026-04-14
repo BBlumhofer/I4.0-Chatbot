@@ -19,7 +19,8 @@ class AgentState(TypedDict, total=False):
 
     # ── LLM interpretation ────────────────────────────────────────────────────
     intent: str
-    capability: str          # neo4j | opcua | rag | kafka
+    query_mode: str          # transactional | exploratory | meta | control
+    capability: str          # neo4j | opcua | rag | kafka | agent_management
     submodel: Optional[str]  # only relevant for neo4j
     entities: dict[str, Any]
 

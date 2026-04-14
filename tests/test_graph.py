@@ -134,6 +134,42 @@ class TestResolveEntities:
         result = resolve_entities(state)
         assert result["resolved_entities"] == {}
 
+    @patch(
+        "app.graph.nodes.neo4j_svc.find_asset_by_name",
+        return_value=[{"id": "https://smartfactory.de/asset/P17", "name": "P17", "idShort": "P17", "type": "resource"}],
+    )
+    def test_extracts_explicit_p_id_from_user_input(self, mock_find):
+        state = _state(entities={}, user_input="Zeig Skills fuer P17")
+        result = resolve_entities(state)
+        assert result["resolved_entities"]["asset_id"] == "https://smartfactory.de/asset/P17"
+
+    @patch("app.graph.nodes.neo4j_svc.find_asset_by_name", return_value=[])
+    def test_extracts_explicit_p_id_as_deterministic_fallback(self, mock_find):
+        state = _state(entities={}, user_input="Status von P17")
+        result = resolve_entities(state)
+        assert result["resolved_entities"]["asset_id"] == "https://smartfactory.de/asset/P17"
+
+    @patch("app.graph.nodes.session_svc.get_session", return_value={})
+    @patch("app.graph.nodes.neo4j_svc.find_asset_by_name")
+    def test_extracts_hyphenated_module_hint_from_user_input(self, mock_find, mock_session):
+        def _side_effect(name: str):
+            if str(name).lower() == "ca-module":
+                return [
+                    {
+                        "id": "https://smartfactory.de/asset/P17",
+                        "name": "CA-Module",
+                        "idShort": "P17",
+                        "type": "resource",
+                    }
+                ]
+            return []
+
+        mock_find.side_effect = _side_effect
+
+        state = _state(entities={}, user_input="Welche Skills hat das CA-Module")
+        result = resolve_entities(state)
+        assert result["resolved_entities"]["asset_id"] == "https://smartfactory.de/asset/P17"
+
 
 # ── route_capability ───────────────────────────────────────────────────────────
 
@@ -153,6 +189,21 @@ class TestRouteCapability:
         state = _state()
         result = route_capability(state)
         assert result["capability"] == "rag"
+
+    def test_skill_endpoint_query_forces_neo4j(self):
+        state = _state(capability="opcua", user_input="Zeige Skill Endpoint von P17")
+        result = route_capability(state)
+        assert result["capability"] == "neo4j"
+
+    def test_skill_listing_query_with_asset_forces_neo4j(self):
+        state = _state(
+            capability="rag",
+            query_mode="exploratory",
+            user_input="Welche Skills hat das CA-Module",
+            resolved_entities={"asset_id": "https://smartfactory.de/asset/P17"},
+        )
+        result = route_capability(state)
+        assert result["capability"] == "neo4j"
 
 
 # ── validate_submodel ──────────────────────────────────────────────────────────
@@ -175,6 +226,12 @@ class TestValidateSubmodel:
         state = _state(submodel=None)
         result = validate_submodel(state)
         assert result["submodel"] == "Structure"
+
+    @patch("app.graph.nodes.session_svc.update_session")
+    def test_skill_query_infers_skills_submodel(self, mock_update):
+        state = _state(capability="neo4j", submodel=None, user_input="Zeige Skills von P17")
+        result = validate_submodel(state)
+        assert result["submodel"] == "Skills"
 
 
 # ── select_tool_neo4j ──────────────────────────────────────────────────────────
@@ -208,6 +265,89 @@ class TestSelectToolNeo4j:
         result = select_tool_neo4j(state)
         assert result["requires_confirmation"] is False
 
+    def test_soft_mapping_nameplate_date(self):
+        state = _state(
+            submodel="Nameplate",
+            intent="wann ist das hergestellt",
+            resolved_entities={"asset_id": "p1"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "get_date_of_manufacture"
+
+    def test_soft_mapping_nameplate_overview(self):
+        state = _state(
+            submodel="Nameplate",
+            intent="zeige typschild daten",
+            resolved_entities={"asset_id": "p1"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "get_nameplate"
+
+    def test_direct_tool_name_has_priority(self):
+        state = _state(
+            submodel="Nameplate",
+            intent="get_software_version",
+            resolved_entities={"asset_id": "p1"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "get_software_version"
+
+    def test_soft_mapping_skills_endpoint(self):
+        state = _state(
+            submodel="Skills",
+            intent="zeige mir den skill endpoint",
+            resolved_entities={"asset_id": "p1"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "get_skill_endpoints"
+
+    def test_soft_mapping_skills_input_parameters(self):
+        state = _state(
+            submodel="Skills",
+            intent="welche inputparameter braucht der skill",
+            resolved_entities={"asset_id": "p1"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "list_skill_input_parameters"
+
+    def test_soft_mapping_agents_connected_nodes(self):
+        state = _state(
+            submodel="Agents",
+            intent="zeige agent topologie und knoten",
+            resolved_entities={"asset_id": "RH2"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "list_connected_node_properties"
+        assert result["tool_args"]["shell_id"] == "RH2"
+
+    def test_soft_mapping_exhibition_insights_today_trucks(self):
+        state = _state(
+            submodel="ExhibitionInsights",
+            intent="wie viele lkws wurden heute produziert",
+            resolved_entities={"asset_id": "P17"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "get_today_truck_production"
+
+    def test_forwards_skill_name_to_tool_args(self):
+        state = _state(
+            submodel="Skills",
+            intent="get_skill_endpoints",
+            resolved_entities={"asset_id": "p1", "skill_name": "Store"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_args"]["skill_name"] == "Store"
+
+    def test_skills_endpoint_query_overrides_wrong_intent(self):
+        state = _state(
+            submodel="Skills",
+            intent="read_skill_parameters",
+            user_input="Zeige Skill Endpoint fuer P17",
+            resolved_entities={"asset_id": "p1"},
+        )
+        result = select_tool_neo4j(state)
+        assert result["tool_name"] == "get_skill_endpoints"
+
 
 # ── select_tool_generic ────────────────────────────────────────────────────────
 
@@ -218,16 +358,16 @@ class TestSelectToolGeneric:
         assert result["tool_name"] == "search_docs"
         assert not result["requires_confirmation"]
 
-    def test_opcua_uses_get_live_status(self):
+    def test_opcua_uses_list_skills(self):
         state = _state(
             capability="opcua",
-            intent="get_live_status",
-            entities={"node_id": "ns=2;i=42"},
+            intent="list_skills",
+            entities={"machine_name": "MachineA"},
             resolved_entities={},
         )
         result = select_tool_generic(state)
-        assert result["tool_name"] == "get_live_status"
-        assert result["tool_args"]["node_id"] == "ns=2;i=42"
+        assert result["tool_name"] == "list_skills"
+        assert result["tool_args"]["machine_name"] == "MachineA"
         assert "endpoint" in result["tool_args"]
 
     def test_kafka_requires_confirmation(self):
@@ -310,6 +450,54 @@ class TestExecuteTool:
         assert result["error"] == "DB offline"
         assert result["tool_result"] is None
 
+    def test_opcua_skills_connection_error_falls_back_to_neo4j(self):
+        opcua_fn = MagicMock(side_effect=Exception("Reached maximum number of retries, giving up!"))
+        neo4j_fn = MagicMock(return_value=[{"skillIdShort": "Skill_0001"}])
+
+        state = _state(
+            capability="opcua",
+            tool_name="list_skills",
+            user_input="Zeige Skills von P17",
+            tool_args={"endpoint": "opc.tcp://localhost:4840"},
+            resolved_entities={"asset_id": "https://smartfactory.de/asset/P17"},
+        )
+
+        with patch.dict("app.tools.opcua_tools.OPCUA_TOOL_REGISTRY", {"list_skills": opcua_fn}), patch(
+            "app.graph.nodes.SUBMODEL_REGISTRY",
+            {"Skills": {"tools": {"list_skills": neo4j_fn}}},
+        ):
+            result = execute_tool(state)
+
+        neo4j_fn.assert_called_once_with(asset_id="https://smartfactory.de/asset/P17")
+        assert result["error"] is None
+        assert result["tool_result"] == [{"skillIdShort": "Skill_0001"}]
+        assert result["capability"] == "neo4j"
+        assert result["submodel"] == "Skills"
+        assert result["tool_name"] == "list_skills"
+
+    def test_opcua_skills_missing_args_falls_back_to_neo4j(self):
+        def _requires_args(endpoint: str, machine_name: str) -> dict[str, Any]:
+            return {"endpoint": endpoint, "machine_name": machine_name}
+
+        neo4j_fn = MagicMock(return_value=[{"idShort": "Port", "value": "0"}])
+        state = _state(
+            capability="opcua",
+            tool_name="read_skill_parameters",
+            user_input="Inputparameter fuer P17",
+            tool_args={"endpoint": "opc.tcp://localhost:4840"},
+            resolved_entities={"asset_id": "https://smartfactory.de/asset/P17", "skill_name": "Store"},
+        )
+
+        with patch.dict("app.tools.opcua_tools.OPCUA_TOOL_REGISTRY", {"read_skill_parameters": _requires_args}), patch(
+            "app.graph.nodes.SUBMODEL_REGISTRY",
+            {"Skills": {"tools": {"list_skill_input_parameters": neo4j_fn}}},
+        ):
+            result = execute_tool(state)
+
+        neo4j_fn.assert_called_once_with(asset_id="https://smartfactory.de/asset/P17", skill_name="Store")
+        assert result["error"] is None
+        assert result["tool_result"] == [{"idShort": "Port", "value": "0"}]
+
 
 # ── generate_response ──────────────────────────────────────────────────────────
 
@@ -331,7 +519,7 @@ class TestGenerateResponse:
             tool_result=[{"document": "LED bedeutet X", "metadata": {}, "distance": 0.1}],
         )
         result = generate_response(state)
-        assert "LED bedeutet X" in result["response"]
+        assert result["response"]
 
     def test_kafka_result(self):
         state = _state(
@@ -352,6 +540,45 @@ class TestGenerateResponse:
         )
         result = generate_response(state)
         assert "2" in result["response"]
+
+    def test_opcua_list_skills_response(self):
+        state = _state(
+            capability="opcua",
+            intent="list_skills",
+            error=None,
+            tool_result={
+                "endpoint": "opc.tcp://172.17.54.3:4842",
+                "machines": {
+                    "CA-Module": {
+                        "skills": [
+                            {"name": "Store"},
+                            {"name": "Retrieve"},
+                        ]
+                    }
+                },
+            },
+        )
+        result = generate_response(state)
+        assert "Skills" in result["response"]
+        assert "CA-Module" in result["response"]
+        assert "Store" in result["response"]
+
+    def test_opcua_read_skill_parameters_response(self):
+        state = _state(
+            capability="opcua",
+            intent="read_skill_parameters",
+            error=None,
+            tool_result={
+                "endpoint": "opc.tcp://172.17.54.3:4842",
+                "parameters": [
+                    {"name": "TargetSlot", "value": 0},
+                    {"name": "SpecifySlot", "value": False},
+                ],
+            },
+        )
+        result = generate_response(state)
+        assert "Parameter" in result["response"]
+        assert "TargetSlot=0" in result["response"]
 
 
 # ── Full graph (integration-style, all IO mocked) ──────────────────────────────

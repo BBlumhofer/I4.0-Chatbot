@@ -10,15 +10,18 @@ from typing import Any
 
 from app.services import neo4j_service as db
 from app.tools.neo4j._base import SubmodelToolset, register_submodel
+from app.tools.neo4j._query import asset_match_clause
 
 
 def get_condition_history(asset_id: str) -> list[dict[str, Any]]:
     """Return the most recent condition monitoring entries for an asset."""
     cypher = """
-    MATCH (a:Asset {id: $asset_id})
-          <-[:DESCRIBES_ASSET]-(s:Shell)
-          -[:HAS_SUBMODEL]->(sm:Submodel {idShort: 'ConditionMonitoring'})
-          -[:HAS_ELEMENT]->(entry:SubmodelElement)
+        MATCH (a:Asset)
+        """ + asset_match_clause() + """
+        WITH a LIMIT 1
+        MATCH (a)<-[:DESCRIBES_ASSET]-(s:Shell)
+            -[:HAS_SUBMODEL]->(sm:Submodel {idShort: 'ConditionMonitoring'})
+            -[:HAS_ELEMENT]->(entry)
     RETURN entry.idShort AS metric, entry.value AS value,
            entry.timestamp AS timestamp, entry.unit AS unit
     ORDER BY entry.timestamp DESC

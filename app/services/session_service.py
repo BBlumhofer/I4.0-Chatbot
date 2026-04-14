@@ -17,6 +17,7 @@ from app.config import settings
 logger = logging.getLogger(__name__)
 
 SESSION_TTL = 3600  # seconds
+MAX_CHAT_HISTORY_TURNS = 16
 
 _redis: Optional[redis.Redis] = None
 
@@ -55,3 +56,27 @@ def update_session(session_id: str, updates: dict[str, Any]) -> dict[str, Any]:
 
 def delete_session(session_id: str) -> None:
     _get_redis().delete(f"session:{session_id}")
+
+
+def append_chat_history(
+    session_id: str,
+    role: str,
+    text: str,
+    max_turns: int = MAX_CHAT_HISTORY_TURNS,
+) -> dict[str, Any]:
+    """Append one chat turn and keep only the most recent turns."""
+    if not text.strip():
+        return get_session(session_id)
+
+    ctx = get_session(session_id)
+    history = ctx.get("chat_history")
+    if not isinstance(history, list):
+        history = []
+
+    history.append({"role": str(role), "text": str(text)})
+    if max_turns > 0 and len(history) > max_turns:
+        history = history[-max_turns:]
+
+    ctx["chat_history"] = history
+    save_session(session_id, ctx)
+    return ctx

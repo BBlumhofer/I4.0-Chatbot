@@ -1,0 +1,16 @@
+{
+  "resources": [
+    {
+      "canonical_id": "P17",
+      "site": "SFKL",
+      "line": "CA",
+      "aliases": [
+        "P17",
+        "P17 CA-Modul",
+        "ca-modul",
+        "collaborative-assembly module",
+        "Handarbeitsmodul"
+      ]
+    }
+  ]
+}

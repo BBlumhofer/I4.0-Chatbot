@@ -67,6 +67,7 @@ def build_graph() -> StateGraph:
             "opcua": "select_tool_generic",
             "rag": "select_tool_generic",
             "kafka": "select_tool_generic",
+            "agent_management": "select_tool_generic",
         },
     )
 

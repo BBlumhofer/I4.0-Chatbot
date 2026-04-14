@@ -1,0 +1,7716 @@
+Production Ressurce:
+MATCH (a:Asset {globalAssetId:"https://smartfactory.de/asset/P18"})
+      <-[:DESCRIBES_ASSET]-(s:Shell)
+      -[:HAS_SUBMODEL]->(sm:Submodel)
+      -[:HAS_ELEMENT]->(rootEl)
+MATCH (rootEl)-[:HAS_ELEMENT*0..]->(el)
+OPTIONAL MATCH (parent)-[:HAS_ELEMENT]->(el)
+RETURN sm.idShort AS submodel,
+       el.idShort AS idShort,
+       el.value AS value,
+       el.valueType AS valueType,
+       labels(el) AS elementTypes,
+       parent.idShort AS parentIdShort
+ORDER BY submodel, parentIdShort, idShort
+
+[
+  {
+    "submodel": "Availability",
+    "idShort": "End",
+    "value": "2026-04-08T18:35:28.0000000Z",
+    "valueType": "xs:dateTime",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "End",
+    "value": "2026-04-08T18:36:08.0000000Z",
+    "valueType": "xs:dateTime",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "Reason",
+    "value": "GA:PROD_A-000012-SEMITRAILER_TRUCK:PROD_A-000012-SEMITRAILER_TRUCK-040-STORE",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "Reason",
+    "value": "GA:PROD_A-000012-SEMITRAILER_TRUCK:PROD_A-000012-SEMITRAILER_TRUCK-060-DEPLETE",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "Start",
+    "value": "2026-04-08T18:35:08.0000000Z",
+    "valueType": "xs:dateTime",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "Start",
+    "value": "2026-04-08T18:35:48.0000000Z",
+    "valueType": "xs:dateTime",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "Type",
+    "value": "Planning",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "Type",
+    "value": "Planning",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": ""
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "MachineState",
+    "value": "available",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Availability"
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "UnavailabilityBlocks",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "Availability"
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "UnavailabilityBlocks"
+  },
+  {
+    "submodel": "Availability",
+    "idShort": "",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "UnavailabilityBlocks"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "LED_Strip",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Auxiliary_Monitoring_Unit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Raspberry_Pi",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Auxiliary_Monitoring_Unit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "ArcheType",
+    "value": "Full",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "BillOfMaterial"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Roadshow_Demonstrator",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "BillOfMaterial"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Pilz_SDD_ES_PROFINET",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "ControlUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensIndustriePC",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "ControlUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensSCALANCE_XC208",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "ControlUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensSIMATICET200SP",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "ControlUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Siemens_SIMATIC_CPU_1511F",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "ControlUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "YASKAWA_YRC_1000",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "ControlUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "WeidmuellerPROECO3",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "PowerSupplyComponents"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "PowerSupplyComponents",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "PowerSupplyUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Auxiliary_Monitoring_Unit",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Roadshow_Demonstrator"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "PowerSupplyUnit",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Roadshow_Demonstrator"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "WorkStation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Roadshow_Demonstrator"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "YASKAWA_Robot_GP7",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Roadshow_Demonstrator"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "PilzPSEN_ProximitySensor_1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SafetyUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "PilzPSEN_ProximitySensor_2",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SafetyUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "PilzPSEN_ProximitySensor_3",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SafetyUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "PilzPSEN_ProximitySensor_4",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SafetyUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Pilz_PIT_Emergency_Stop",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SafetyUnit"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensDigitalInput_8DI",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SiemensSIMATICET200SP"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensDigitalOutput_8DO",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SiemensSIMATICET200SP"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensSafeDigitalInput_8DI_1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SiemensSIMATICET200SP"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SiemensSafeDigitalInput_8DI_2",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "SiemensSIMATICET200SP"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "BulkCount",
+    "value": "0",
+    "valueType": "xs:unsignedLong",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "WorkStation"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "ControlUnit",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "WorkStation"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "SafetyUnit",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "WorkStation"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Programmable_Pendant",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "YASKAWA_YRC_1000"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "AuthorName",
+    "value": "Martin Zajac",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Author"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "AuthorOrganization",
+    "value": "Technologie-Initiative SmartFactory KL e. V.",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Author"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "Design_V01",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "DesignOfProduct"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ApplicationName",
+    "value": "Siemens NX",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ApplicationSource",
+    "value": "Siemens",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "Author",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelDescription",
+    "value": "prt",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelFileVersion",
+    "value": "V1.0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelName",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelType",
+    "value": "CAD",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "MachineSchedule",
+    "idShort": "HasOpenTasks",
+    "value": "false",
+    "valueType": "xs:boolean",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "MachineSchedule"
+  },
+  {
+    "submodel": "MachineSchedule",
+    "idShort": "LastTimeUpdated",
+    "value": null,
+    "valueType": "xs:dateTime",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "MachineSchedule"
+  },
+  {
+    "submodel": "MachineSchedule",
+    "idShort": "Schedule",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "MachineSchedule"
+  },
+  {
+    "submodel": "MachineScheduleLog",
+    "idShort": "LastTimeUpdated",
+    "value": null,
+    "valueType": "xs:dateTime",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "MachineScheduleLog"
+  },
+  {
+    "submodel": "MachineScheduleLog",
+    "idShort": "Schedule",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "MachineScheduleLog"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "CityTown",
+    "value": "{\"de\": \"Kaiserslautern\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Company",
+    "value": "{\"en\": \"Technologie-Initiative SmartFactory KL e. V.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Department",
+    "value": "{\"de\": \"Innovative Fabriksysteme\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Email",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Fax",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "FirstName",
+    "value": "{\"en\": \"Simon\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "IPCommunication__00__",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Language",
+    "value": "DE",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "NameOfContact",
+    "value": "{\"en\": \"Jungbluth\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "NationalCode",
+    "value": "{\"en\": \"DE\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "POBox",
+    "value": "{\"en\": \"PF 1234\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Phone",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "RoleOfContactPerson",
+    "value": "0173-1#07-AAS931#001",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "StateCounty",
+    "value": "{\"de\": \"Rheinland-Pfalz\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Street",
+    "value": "{\"de\": \"Trippstadter Str. 122\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "TimeZone",
+    "value": "Z",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Title",
+    "value": "{\"en\": \"Mr\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ZipCodeOfPOBox",
+    "value": "{\"en\": \"12345\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Zipcode",
+    "value": "{\"de\": \"67663\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "EmailAddress",
+    "value": "info@smartfactory.de",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Email"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "FaxNumber",
+    "value": "{\"en\": \"+49(0) 631 20575-3402\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Fax"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "TypeOfFaxNumber",
+    "value": " 0173-1#07-AAS754#001",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Fax"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "AddressOfAdditionalLink",
+    "value": "https://www.smartfactory.de/",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "IPCommunication__00__"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "AvailableTime",
+    "value": "{\"de\": \"Montag – Freitag 08:00 bis 16:00\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "IPCommunication__00__"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "TypeOfCommunication",
+    "value": "Chat",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "IPCommunication__00__"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "AddressInformation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "CountryOfOrigin",
+    "value": "DE",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "DateOfManufacture",
+    "value": "2025-03-31",
+    "valueType": "xs:date",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "HardwareVersion",
+    "value": "1.0.0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerName",
+    "value": "{\"de\": \"Technologie-Initiative SmartFactory KL e. V.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerProductDesignation",
+    "value": "{\"en\": \"Productionisland that contains multiple production modules\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerProductFamily",
+    "value": "{\"en\": \"Factory\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerProductRoot",
+    "value": "{\"en\": \"Factory\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerProductType",
+    "value": "Value-adding ProductionIsland",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "SoftwareVersion",
+    "value": "2.0.0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "URIOfTheProduct",
+    "value": "https://www.smartfactory.de/asset/PHUKET",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "YearOfConstruction",
+    "value": "2025",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "File"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "AvailableTime",
+    "value": "{\"de\": \"Montag – Freitag 08:00 bis 16:00\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Phone"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "TelephoneNumber",
+    "value": "{\"en\": \"+49(0) 631 20575-3401\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Phone"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "TypeOfTelephone",
+    "value": "0173-1#07-AAS754#001",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Phone"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": "{\"en\": \" Capability to prepapre the are that a docked machine can store or deplete a part.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "ArrangeContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ArrangeContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ArrangeContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "ArrangeContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "ArrangeContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "DepleteAndStorageContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "DepleteContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "StorageContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": "{\"en\": \" Capability to deplete a part and later store a part from a docked machine.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "DepleteAndStorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "DepleteAndStorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "DepleteAndStorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "DepleteAndStorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": "{\"en\": \" Capability to deplete a part to a docked machine.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "DepleteContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "DepleteContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "DepleteContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "DepleteContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilitySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "OfferedCapabilityDescription"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer001"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer002"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer003"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyComment",
+    "value": "{\"en\": \" \"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "PropertyContainer004"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer003",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer003",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer003",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer003",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer004",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer004",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer004",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertyContainer004",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": "{\"en\": \" Capability to store a part from a docked machine.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "StorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StorageContainer"
+  },
+  {
+    "submodel": "OfferedCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "StorageContainer"
+  },
+  {
+    "submodel": "SituationLog",
+    "idShort": "SituationSet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "SituationLog"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "base",
+    "value": "http://172.17.57.3:4845",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "EndpointMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "contentType",
+    "value": "application/json",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "EndpointMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scada",
+    "value": "http://172.17.57.3:8000",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "EndpointMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "security",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "EndpointMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "securityDefinitions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "EndpointMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "BlockPortAfterExecution",
+    "value": "true",
+    "valueType": "xs:boolean",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "ID",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "ID",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "ID",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "ID",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Port",
+    "value": "0",
+    "valueType": "xs:int",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Port",
+    "value": "0",
+    "valueType": "xs:int",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Port",
+    "value": "0",
+    "valueType": "xs:int",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Port",
+    "value": "0",
+    "valueType": "xs:int",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "RequiredInputParameters"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredAccessLevel",
+    "value": "2",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredAccessLevel",
+    "value": "2",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredAccessLevel",
+    "value": "2",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredAccessLevel",
+    "value": "2",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredInputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredInputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredInputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "RequiredInputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillEndpoint",
+    "value": "opc.tcp://172.17.57.3:4845/ns=6;s=Module.SkillSet.Store",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillEndpoint",
+    "value": "opc.tcp:/172.17.57.3:4845/ns=6;s=Module.SkillSet.Retrieve",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillEndpoint",
+    "value": "opc.tcp://172.17.57.3:4845/ns=6;s=Module.SkillSet.Arrange",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillEndpoint",
+    "value": "opc.tcp://172.17.57.3:4845/ns=6;s=Module.SkillSet.ReleaseBlockedPort",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Trigger",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Trigger",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Trigger",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Trigger",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "SkillInterfaceDescription"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "InterfaceConcept",
+    "value": "SkillModel_V4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "InterfaceProtocol",
+    "value": "opc.tcp",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SkillMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "StateMachine",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillMetadata"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Skill_0001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillSet"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Skill_0002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillSet"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Skill_0003",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillSet"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Skill_0004",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SkillSet"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Name",
+    "value": "Store",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Skill_0001"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillInterfaceDescription",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skill_0001"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Name",
+    "value": "Retrieve",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Skill_0002"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillInterfaceDescription",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skill_0002"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Name",
+    "value": "Arrange",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Skill_0003"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillInterfaceDescription",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skill_0003"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Name",
+    "value": "ReleaseBlockedPort",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Skill_0004"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillInterfaceDescription",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skill_0004"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "EndpointMetadata",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skills"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillMetadata",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skills"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "SkillSet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Skills"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "States",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StateMachine"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Transitions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StateMachine"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Trigger",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StateMachine"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "TypeOfStateMachine",
+    "value": "SmartFactoryKL V4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "StateMachine"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Completed",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Halted",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Halting",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Ready",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Running",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Starting",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "Suspended",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "States"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Operation"
+    ],
+    "parentIdShort": "Trigger"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "in",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "apikey_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "name",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "apikey_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "apikey_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "apikey",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "apikey_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "auto_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "auto",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "auto_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "in",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "basic_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "name",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "basic_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "basic_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "basic",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "basic_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "alg",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "authorization",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "format",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "in",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "name",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "bearer",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "bearer_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "allOf",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "combo_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "oneOf",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "combo_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "combo_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "combo",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "combo_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "in",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "digest_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "name",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "digest_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "digest_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "qop",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "digest_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "digest",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "digest_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "nosec",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "nosec_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "authorization",
+    "value": null,
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "flow",
+    "value": "code",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "refresh",
+    "value": null,
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "oauth2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scopes",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "token",
+    "value": null,
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "oauth2_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "identity",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "psk_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "proxy",
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "psk_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "scheme",
+    "value": "psk",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "psk_sc"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "security"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "apikey_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "auto_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "basic_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "bearer_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "combo_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "digest_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "nosec_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "oauth2_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "Skills",
+    "idShort": "psk_sc",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "securityDefinitions"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandBonusBase",
+    "value": "4",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandBonusMax",
+    "value": "5",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandWeightExecuting",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandWeightImminent",
+    "value": "0.7",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandWeightPlanned",
+    "value": "0.3",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandWeightPotential",
+    "value": "0",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "UrgencyEnabled",
+    "value": "false",
+    "valueType": "xs:boolean",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DemandConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "MaxStepsAhead",
+    "value": "3",
+    "valueType": "xs:int",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProjectionConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "WeightNoAgent",
+    "value": "0",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProjectionConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "WeightStepExecuting",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProjectionConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "WeightStepOpen",
+    "value": "0.3",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProjectionConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "WeightStepPlanned",
+    "value": "0.7",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProjectionConfig"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Alpha",
+    "value": "3.5",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "BaseCost",
+    "value": "2.0",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "CostFunctionType",
+    "value": "exponential",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "MaxCost",
+    "value": "10000",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Name",
+    "value": "RFIDStorage",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Slots",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "StorageId",
+    "value": "63",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "TotalSlots",
+    "value": "4",
+    "valueType": "xs:int",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PufferlagerP18"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityPenalty",
+    "value": "0.5",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_1"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityReward",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_1"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "PreferredType",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_1"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "SlotId",
+    "value": "d0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_1"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityPenalty",
+    "value": "0.5",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_2"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityReward",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_2"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "PreferredType",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_2"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "SlotId",
+    "value": "d0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_2"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityPenalty",
+    "value": "0.5",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_3"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityReward",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_3"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "PreferredType",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_3"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "SlotId",
+    "value": "d0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_3"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityPenalty",
+    "value": "0.5",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_4"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "AffinityReward",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_4"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "PreferredType",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_4"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "SlotId",
+    "value": "d0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Slot_4"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Slot_1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Slots"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Slot_2",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Slots"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Slot_3",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Slots"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Slot_4",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Slots"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "DemandConfig",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StorageConfiguration"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "ProjectionConfig",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StorageConfiguration"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "Storages",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "StorageConfiguration"
+  },
+  {
+    "submodel": "StorageConfiguration",
+    "idShort": "PufferlagerP18",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Storages"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "SymptomSet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SymptomDescription"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "Symptom_0",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SymptomSet"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "Symptom_1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "SymptomSet"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "SymptomName",
+    "value": "{\"en\": \"HighVibration\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Symptom_0"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "SymptomProperty",
+    "value": "Vibration",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Symptom_0"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "Symptom_0"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "SymptomName",
+    "value": "{\"en\": \"NoPart\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Symptom_1"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": "SymptomProperty",
+    "value": "part_sensor",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Symptom_1"
+  },
+  {
+    "submodel": "SymptomDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Range"
+    ],
+    "parentIdShort": "Symptom_1"
+  }
+]
+
+
+
+Truck: MATCH (a:Asset {globalAssetId:"https://smartfactory.de/assets/YCJIPM-pku"})
+      <-[:DESCRIBES_ASSET]-(s:Shell)
+      -[:HAS_SUBMODEL]->(sm:Submodel)
+      -[:HAS_ELEMENT]->(rootEl)
+MATCH (rootEl)-[:HAS_ELEMENT*0..]->(el)
+OPTIONAL MATCH (parent)-[:HAS_ELEMENT]->(el)
+RETURN sm.idShort AS submodel,
+       el.idShort AS idShort,
+       el.value AS value,
+       el.valueType AS valueType,
+       labels(el) AS elementTypes,
+       parent.idShort AS parentIdShort
+ORDER BY submodel, parentIdShort, idShort
+
+[
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "ArcheType",
+    "value": "Full",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "BillOfApplications"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "BillOfApplications",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "BillOfApplications"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "DigitalProductionSystem",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "BillOfApplications"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "SmartFactoryShellScape",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "BillOfApplications"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "XitasoMnestix",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "BillOfApplications"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "ApplicationURL",
+    "value": "https://oncite.apps.c01.demo.oncite.io/core/productionview/#/workorder",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DigitalProductionSystem"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "HMI_Client",
+    "value": "https://oncite.apps.c01.demo.oncite.io/hmi/#/workorder-list",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "DigitalProductionSystem"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "ApplicationURL",
+    "value": "https://shell-scape.services.plant.smartfactory.de/#/shell/aHR0cHM6Ly9zbWFydGZhY3RvcnkuZGUvc2hlbGxzL3VSb2F1aTF0M0U",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "SmartFactoryShellScape"
+  },
+  {
+    "submodel": "BillOfApplications",
+    "idShort": "ApplicationURL",
+    "value": "http://shell-view.smartfactory.de/aHR0cHM6Ly9zbWFydGZhY3RvcnkuZGUvc2hlbGxzL3VSb2F1aTF0M0U",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "XitasoMnestix"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "ArcheType",
+    "value": "Full",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "BillOfMaterial"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Truck",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "BillOfMaterial"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/JXG05ClQiv",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/9xeHA3OL7g",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Cab_A_Blue",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Cab"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/HxG5avNhvO",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/U6kgSFkyB8",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Cab_Chassis",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate1x1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate1x4",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x2",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x2Modified",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x3",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x4",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Tile1x1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Tire",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Wheel",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Cab_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate1x1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate1x1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate1x4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x4"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate1x4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x4"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x4"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate1x4"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x2"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x2"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x2Modified",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x2Modified"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x2Modified",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x2Modified"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x2Modified"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x2Modified"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x3",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x3"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x3",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x3"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x3"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x3"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x4"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x4"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Plate2x8",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x8"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Plate2x8"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/WyDL3cr5pE",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/8My15nhujc",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Semitrailer",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Semitrailer_Chassis",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Trailer_Body",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Semitrailer"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/7FV-cSb2vc",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/Fxxj1GMhIK",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Semitrailer_Chassis",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate1x1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate1x4",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x2Modified",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x3",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Plate2x8",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Tile1x1",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Tire",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "TurnPlateLower",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Wheel",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Semitrailer_Chassis"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Cab",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Cab_Chassis",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/z77fSohPCx",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/TSVhgfAeHA",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Semitrailer_Truck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Semitrailer_Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Tile1x1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tile1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Tile1x1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tile1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tile1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "2",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tile1x1"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Tire",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tire"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Tire",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tire"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tire"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Tire"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/vS3dcjFIlU",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Trailer_Body"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/bRe-hwEsiP",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Trailer_Body"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Trailer_Body_Blue",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Trailer_Body"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Trailer_Body"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Trailer_Body"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "GlobalAssetId",
+    "value": "https://smartfactory.de/assets/YCJIPM-pku",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Id",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Truck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Semitrailer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Semitrailer_Truck",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Entity"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Truck"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "TurnPlateLower",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "TurnPlateLower"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "TurnPlateLower"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Wheel",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Wheel"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Name",
+    "value": "Wheel",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Wheel"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Wheel"
+  },
+  {
+    "submodel": "BillOfMaterial",
+    "idShort": "Quantity",
+    "value": "4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Wheel"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "ProductCarbonFootprint_A1A3",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CarbonFootprint"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "ProductCarbonFootprint_A4",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CarbonFootprint"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "ProductCarbonFootprint_B5",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CarbonFootprint"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "CityTown",
+    "value": "Hannover",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "CityTown",
+    "value": "Hannover",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "CityTown",
+    "value": "Kaiserslautern",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Country",
+    "value": "Germany",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "HouseNumber",
+    "value": "11",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "HouseNumber",
+    "value": "122",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Latitude",
+    "value": "52.31947731917296",
+    "valueType": "xs:float",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Latitude",
+    "value": "52.321725",
+    "valueType": "xs:float",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Latitude",
+    "value": "49.428006",
+    "valueType": "xs:float",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Longitude",
+    "value": "9.81000507976999",
+    "valueType": "xs:float",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Longitude",
+    "value": "9.811261",
+    "valueType": "xs:float",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Longitude",
+    "value": "7.751222",
+    "valueType": "xs:float",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Street",
+    "value": "Alte Kronsbergstraße",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Street",
+    "value": "Hermesallee",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "Street",
+    "value": "Trippstadter Strasse",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "ZipCode",
+    "value": "30521",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "ZipCode",
+    "value": "30521",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "ZipCode",
+    "value": "67663",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PCFGoodsAddressHandover"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFCO2eq",
+    "value": "1.2900",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFCalculationMethod",
+    "value": "GHG Protocol",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFGoodsAddressHandover",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFLifeCyclePhase",
+    "value": "A1-A3",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFQuantityOfMeasureForCalculation",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFReferenceValueForCalculation",
+    "value": "piece",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PublicationDate",
+    "value": "2025-03-11",
+    "valueType": "xs:date",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A1A3"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFCO2eq",
+    "value": "0.8000",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFCalculationMethod",
+    "value": "GHG Protocol",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFGoodsAddressHandover",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFLifeCyclePhase",
+    "value": "A4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFQuantityOfMeasureForCalculation",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFReferenceValueForCalculation",
+    "value": "piece",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PublicationDate",
+    "value": "2025-03-31",
+    "valueType": "xs:date",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_A4"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFCO2eq",
+    "value": "0.0000",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFCalculationMethod",
+    "value": "GHG Protocol",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFGoodsAddressHandover",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFLifeCyclePhase",
+    "value": "B5",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFQuantityOfMeasureForCalculation",
+    "value": "1",
+    "valueType": "xs:double",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PCFReferenceValueForCalculation",
+    "value": "piece",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "CarbonFootprint",
+    "idShort": "PublicationDate",
+    "value": "2025-03-31",
+    "valueType": "xs:date",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductCarbonFootprint_B5"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "CreatorIsland",
+    "value": "Probably _PHUCKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "AdditionalInformation"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "AuthorName",
+    "value": "Fabrikvordenker:in ER28-0652",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Author"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "AuthorOrganization",
+    "value": "Technologie-Initiative SmartFactory KL e. V.",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Author"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "Design_V01",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "DesignOfProduct"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "AdditionalInformation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ApplicationName",
+    "value": "Siemens NX",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ApplicationSource",
+    "value": "Technologie-Initiative SmartFactory KL e. V.",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "Author",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelDescription",
+    "value": "prt",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelFileVersion",
+    "value": "V1.0",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelName",
+    "value": "Truck_CAD_v0_2_005.prt",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "DesignOfProduct",
+    "idShort": "ModelType",
+    "value": "CAD",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Design_V01"
+  },
+  {
+    "submodel": "MaterialData",
+    "idShort": "MaterialList",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementList"
+    ],
+    "parentIdShort": "MaterialData"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "CityTown",
+    "value": "{\"de\": \"Kaiserslautern\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "NationalCode",
+    "value": "{\"de\": \"DE\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Street",
+    "value": "{\"de\": \"Trippstadter Strasse 122\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "Zipcode",
+    "value": "{\"de\": \"67663\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "AddressInformation"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "AddressInformation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "CountryOfOrigin",
+    "value": "DE",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerName",
+    "value": "{\"de\": \"Technologie-Initiative SmartFactory KL e.V.\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "ManufacturerProductDesignation",
+    "value": "{\"de\": \"Truck\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "OrderCodeOfManufacturer",
+    "value": "sSSTPDW56C",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "URIOfTheProduct",
+    "value": "https://smartfactory.de/assets/YCJIPM-pku",
+    "valueType": "xs:anyURI",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "Nameplate",
+    "idShort": "YearOfConstruction",
+    "value": "2026",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Nameplate"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "Brand",
+    "value": "SmartFactoryKL - Shared Production",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "ConfiguratorOptionId",
+    "value": "sfid:aacs:option:truck:standard",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "ConfiguratorProductClassId",
+    "value": "sfid:aacs:product-class:truck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "Identifier",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "InternalViewerUrl",
+    "value": "http://172.17.10.74:5170/#/shell/https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "OrderNumber",
+    "value": "sSSTPDW56C",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "OrderTimeIso",
+    "value": "2026-04-08T18:47:19Z",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "OrderTimestamp",
+    "value": "1775674039",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "ProductCountryOfOrigin",
+    "value": "GER",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "ProductFamilyName",
+    "value": "Truck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "ProductName",
+    "value": "Truck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductIdentification",
+    "idShort": "PublicViewerUrl",
+    "value": "https://shell-scape.shells.smartfactory.de/#/shell/https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductIdentification"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "AASLabelPrint",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "RetrieveFromPortLogisticToAMR",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "Retrieve",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "FederatedLearningQualityCheck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "Store",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "Retrieve",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "AssembleProduct",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "LabelPrinter",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "StorageModule",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "Roadshow",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "Qualitaetskontrolle_SmartFactory",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "Roadshow",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "GP4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "GP4",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ActionTitle",
+    "value": "RetrieveToPortLogistic",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Effects",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalResultData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InputParameters",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MachineName",
+    "value": "MotoMini",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Preconditions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "ReferenceElement"
+    ],
+    "parentIdShort": "Action002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Action002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Actions"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "QualityOk",
+    "value": "false",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartTime",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "FinalResultData"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "AAS_ID",
+    "value": "self,ProductIdentification/Identifier",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Cab",
+    "value": "Cab_A_Blue",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ID",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ID",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "MakeImage",
+    "value": "true",
+    "valueType": "xs:boolean",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Port",
+    "value": "Port 1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Port",
+    "value": "Port 1",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductID",
+    "value": "self,ProductIdentification/Identifier",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductID",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductId",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductId1",
+    "value": "self,BillOfMaterial/Truck/Semitrailer/Id",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductId2",
+    "value": "self,BillOfMaterial/Truck/Semitrailer_Truck/Id",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductType",
+    "value": "self,ProductIdentification/ProductName",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ProductType",
+    "value": "self,BillOfMaterial/Truck/Name",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "ShellURL",
+    "value": "https://shell-view.smartfactory.de",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "TargetProductId",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Trailer",
+    "value": "Trailer_Body_Blue",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "WeighProduct",
+    "value": "False",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "InputParameters"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "IsFinished",
+    "value": "false",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "QuantityInformation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0001",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0002",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0003",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0004",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0005",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0006",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Step0007",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "ProductionPlan"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "TotalNumberOfPieces",
+    "value": "1",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "QuantityInformation"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:05",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:50",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:20",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:20",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:20",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:25",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "CycleTime",
+    "value": "00:00:25",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:11:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:10:45",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:09:45",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:09:15",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:08:45",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:08:15",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "EndDateTime",
+    "value": "2026-04-08 00:07:50",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "SetupTime",
+    "value": "00:00:00",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:10:55",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:09:55",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:09:25",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:08:55",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:08:25",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:07:50",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StartDateTime",
+    "value": "2026-04-08 00:07:25",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Scheduling"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P13",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "Assemble",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0001"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P13",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "Load",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0002"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P18",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "Store",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0003"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P3",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "QualityControl",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0004"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P18",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "Deplete",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0005"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P24",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "Unload",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0006"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Actions",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Enterprise",
+    "value": "SmartFactory-KL",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "FinalState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "InitialState",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Scheduling",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Station",
+    "value": "P12",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Status",
+    "value": "open",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "StepTitle",
+    "value": "LabelPrint",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "ProductionPlan",
+    "idShort": "Workcentre",
+    "value": "_PHUKET",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "Step0007"
+  },
+  {
+    "submodel": "QualityInformation",
+    "idShort": "HistoricalData",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "QualityInformation"
+  },
+  {
+    "submodel": "QualityInformation",
+    "idShort": "InspectionDate",
+    "value": "",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "QualityInformation"
+  },
+  {
+    "submodel": "QualityInformation",
+    "idShort": "LifecycleCount",
+    "value": "0",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "QualityInformation"
+  },
+  {
+    "submodel": "QualityInformation",
+    "idShort": "QualityStatus",
+    "value": "0",
+    "valueType": "xs:integer",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "QualityInformation"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CheckAttendanceContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "FullyAutomatedAssemblyContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "LabelPrintContainer",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CapabilitySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "CheckAttendanceContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CheckAttendanceContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "CheckAttendanceContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "CheckAttendanceContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "FullyAutomatedAssemblyContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "FullyAutomatedAssemblyContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "FullyAutomatedAssemblyContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "FullyAutomatedAssemblyContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilityComment",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "LabelPrintContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilityRelations",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "LabelPrintContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "PropertySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "LabelPrintContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": null,
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "Capability"
+    ],
+    "parentIdShort": "LabelPrintContainer"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "ProductID_0001",
+    "value": "https://smartfactory.de/shells/TSVhgfAeHA",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "ProductID_0002",
+    "value": "https://smartfactory.de/shells/8My15nhujc",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "ShellID",
+    "value": "https://smartfactory.de/shells/uRoaui1t3E",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "Truck",
+    "value": "Semitrailer_Truck",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "Truck",
+    "value": "Semitrailer",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "PropertySet"
+  },
+  {
+    "submodel": "RequiredCapabilityDescription",
+    "idShort": "CapabilitySet",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "RequiredCapabilityDescription"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "LinkToShellScape",
+    "value": "{\"en\": \"${shellScapeShellUrl}\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "FurtherInformation"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "ManufacturerArticleNumber",
+    "value": "${assetId}",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "GeneralInformation"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "ManufacturerName",
+    "value": "Technologie-Initiative SmartFactory KL e.V.",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "GeneralInformation"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "ManufacturerOrderCode",
+    "value": "${orderId}",
+    "valueType": "xs:string",
+    "elementTypes": [
+      "Property"
+    ],
+    "parentIdShort": "GeneralInformation"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "ManufacturerProductDesignation",
+    "value": "{\"en\": \"${productFamilyString}\"}",
+    "valueType": null,
+    "elementTypes": [
+      "MultiLanguageProperty"
+    ],
+    "parentIdShort": "GeneralInformation"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "FurtherInformation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "TechnicalData"
+  },
+  {
+    "submodel": "TechnicalData",
+    "idShort": "GeneralInformation",
+    "value": null,
+    "valueType": null,
+    "elementTypes": [
+      "SubmodelElementCollection"
+    ],
+    "parentIdShort": "TechnicalData"
+  }
+]

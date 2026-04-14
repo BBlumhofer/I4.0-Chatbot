@@ -1,129 +1,165 @@
-"""
-OPC UA tools – multi-server, credential-aware.
-
-Each tool accepts an *endpoint* URL so the graph can work with many
-different OPC UA servers within the same chat session.  User credentials
-are stored in the process-global ``connection_manager`` after a successful
-``connect_to_server`` call and are reused automatically for subsequent
-tool calls to the same endpoint.
-
-Available tools
----------------
-connect_to_server   – register credentials and validate the connection
-disconnect          – unregister a server (clears stored credentials)
-browse              – list child nodes of a node (or the Objects folder)
-lock_server         – mark a server as locked to prevent accidental commands
-get_live_status     – read a node's full DataValue (value + status + timestamp)
-read_value          – read a raw scalar value
-
-Adding more tools
------------------
-Define the function (using ``svc`` helpers) and add it to
-``OPCUA_TOOL_REGISTRY``.
-"""
+"""OPC UA toolset based on pyuaadapter client (v4 only)."""
 from __future__ import annotations
 
 import logging
 from typing import Any, Optional
 
-from app.config import settings
 from app.services import opcua_service as svc
 
 logger = logging.getLogger(__name__)
 
-
-# ── Tool functions ─────────────────────────────────────────────────────────────
 
 def connect_to_server(
     endpoint: str,
     username: Optional[str] = None,
     password: Optional[str] = None,
 ) -> dict[str, Any]:
-    """
-    Register an OPC UA server and validate the connection.
-
-    Stores the credentials in the connection manager so that subsequent
-    read/browse/lock calls to the same *endpoint* use them automatically.
-    Raises on connection failure (bad URL, wrong credentials, server offline).
-    """
-    info = svc.validate_connection_sync(endpoint, username, password)
-    svc.connection_manager.register(endpoint, username, password)
-    return info
+    """Connect to OPC UA server with pyuaadapter v4 client."""
+    return svc.connect_server_sync(endpoint, username, password)
 
 
 def disconnect(endpoint: str) -> dict[str, Any]:
-    """
-    Unregister *endpoint* from the connection manager and clear its credentials.
-
-    The OPC UA protocol itself is stateless between requests (every tool call
-    opens and closes its own session), so this only removes the local config.
-    Returns a status dict.
-    """
-    removed = svc.connection_manager.unregister(endpoint)
-    return {
-        "endpoint": endpoint,
-        "status": "disconnected" if removed else "not_registered",
-    }
+    """Disconnect current pyuaadapter session for endpoint."""
+    return svc.disconnect_server_sync(endpoint)
 
 
-def browse(
+def list_skills(
     endpoint: str,
-    node_id: Optional[str] = None,
-) -> list[dict[str, Any]]:
-    """
-    Browse the child nodes of *node_id* on *endpoint*.
-
-    If *node_id* is omitted, the OPC UA Objects folder is browsed.
-    Returns a list of {node_id, display_name, node_class} dicts.
-    Credentials from a previous ``connect_to_server`` call are used
-    automatically.
-    """
-    return svc.browse_nodes_sync(endpoint, node_id)
-
-
-def lock_server(endpoint: str) -> dict[str, Any]:
-    """
-    Mark *endpoint* as locked in the connection manager.
-
-    A locked server will not be unregistered by ``disconnect`` until
-    explicitly unlocked.  This is a soft application-level lock; it does
-    not interact with the OPC UA GDS or SessionActivate mechanism.
-    Returns a status dict.
-    """
-    success = svc.connection_manager.lock(endpoint)
-    return {
-        "endpoint": endpoint,
-        "locked": success,
-        "status": "locked" if success else "not_registered",
-    }
-
-
-def get_live_status(
-    endpoint: str,
-    node_id: str,
+    machine_name: Optional[str] = None,
+    component_name: Optional[str] = None,
 ) -> dict[str, Any]:
-    """
-    Return the current DataValue for *node_id* on *endpoint*:
-    {endpoint, node_id, value, status, source_timestamp}.
-    """
-    return svc.get_live_status_sync(endpoint, node_id)
+    """Read skills for machines/components (v4 skill set only)."""
+    return svc.list_skills_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        component_name=component_name,
+    )
 
 
-def read_value(
+def read_component_parameters(
     endpoint: str,
-    node_id: str,
-) -> Any:
-    """Read a raw scalar value from *node_id* on *endpoint*."""
-    return svc.read_node_value_sync(endpoint, node_id)
+    machine_name: str,
+    component_name: Optional[str] = None,
+) -> dict[str, Any]:
+    """Read component parameter variables."""
+    return svc.read_component_parameters_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        component_name=component_name,
+    )
 
 
-# ── Registry ───────────────────────────────────────────────────────────────────
+def read_component_monitoring(
+    endpoint: str,
+    machine_name: str,
+    component_name: Optional[str] = None,
+) -> dict[str, Any]:
+    """Read component monitoring variables."""
+    return svc.read_component_monitoring_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        component_name=component_name,
+    )
+
+
+def read_component_attributes(
+    endpoint: str,
+    machine_name: str,
+    component_name: Optional[str] = None,
+) -> dict[str, Any]:
+    """Read component attributes."""
+    return svc.read_component_attributes_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        component_name=component_name,
+    )
+
+
+def read_skill_parameters(
+    endpoint: str,
+    machine_name: str,
+    skill_name: str,
+    component_name: Optional[str] = None,
+    scope: str = "execution",
+) -> dict[str, Any]:
+    """Read skill parameter set (execution/feasibility/precondition)."""
+    return svc.read_skill_parameters_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        skill_name=skill_name,
+        component_name=component_name,
+        scope=scope,
+    )
+
+
+def read_skill_monitoring(
+    endpoint: str,
+    machine_name: str,
+    skill_name: str,
+    component_name: Optional[str] = None,
+    scope: str = "execution",
+) -> dict[str, Any]:
+    """Read skill monitoring variables."""
+    return svc.read_skill_monitoring_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        skill_name=skill_name,
+        component_name=component_name,
+        scope=scope,
+    )
+
+
+def write_skill_parameter(
+    endpoint: str,
+    machine_name: str,
+    skill_name: str,
+    parameter_name: str,
+    value: Any,
+    component_name: Optional[str] = None,
+    scope: str = "execution",
+) -> dict[str, Any]:
+    """Write one skill parameter (requires OPCUA_ENABLE_WRITE_EXECUTE=true)."""
+    return svc.write_skill_parameter_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        skill_name=skill_name,
+        parameter_name=parameter_name,
+        value=value,
+        component_name=component_name,
+        scope=scope,
+    )
+
+
+def execute_skill(
+    endpoint: str,
+    machine_name: str,
+    skill_name: str,
+    component_name: Optional[str] = None,
+    scope: str = "execution",
+    action: str = "start",
+    write_parameters: bool = False,
+) -> dict[str, Any]:
+    """Execute skill action (start/reset/halt/suspend) when enabled by flag."""
+    return svc.execute_skill_sync(
+        endpoint=endpoint,
+        machine_name=machine_name,
+        skill_name=skill_name,
+        component_name=component_name,
+        scope=scope,
+        action=action,
+        write_parameters=write_parameters,
+    )
+
 
 OPCUA_TOOL_REGISTRY: dict[str, Any] = {
     "connect_to_server": connect_to_server,
     "disconnect": disconnect,
-    "browse": browse,
-    "lock_server": lock_server,
-    "get_live_status": get_live_status,
-    "read_value": read_value,
+    "list_skills": list_skills,
+    "read_component_parameters": read_component_parameters,
+    "read_component_monitoring": read_component_monitoring,
+    "read_component_attributes": read_component_attributes,
+    "read_skill_parameters": read_skill_parameters,
+    "read_skill_monitoring": read_skill_monitoring,
+    "write_skill_parameter": write_skill_parameter,
+    "execute_skill": execute_skill,
 }

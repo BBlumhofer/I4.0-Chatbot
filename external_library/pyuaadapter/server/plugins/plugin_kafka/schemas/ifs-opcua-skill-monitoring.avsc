@@ -1,0 +1,24 @@
+{
+  "namespace": "dfki.ifs.sensor.opcua",
+  "type": "record",
+  "name": "skill_monitoring",
+  "doc": "Information about one skill of a module.",
+  "fields": [
+    {
+      "name": "variable",
+      "doc": "Name of the monitor variable",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "doc": "Value of the monitor variable",
+      "type": ["null", "string", "float", "int", "boolean"],
+      "default": null
+    },
+    {
+      "name": "source_timestamp",
+      "doc": "timestamp of the source; to track differences between source- & kafka-timestamps",
+      "type": "long"
+    }
+  ]
+}
