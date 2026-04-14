@@ -228,6 +228,9 @@ class Pipeline:
 
     async def pipe(
         self,
+        user_message: str,
+        model_id: str,
+        messages: list[dict],
         body: dict,
         __user__: Optional[dict] = None,
         __event_emitter__: Optional[Callable[[Any], Awaitable[None]]] = None,
@@ -235,15 +238,20 @@ class Pipeline:
         """
         Main pipeline handler called by the Open WebUI Pipelines service.
 
+        The Pipelines framework calls this method with the following keyword
+        arguments (Open WebUI ≥ 0.3 API):
+          - ``user_message``: the last user-role message text
+          - ``model_id``:     the selected model identifier
+          - ``messages``:     the full conversation history
+          - ``body``:         the raw request body
+
         The method is an async generator: it ``yield``s plain-text chunks that
         Open WebUI assembles into the assistant's response.  Status events are
         sent via ``__event_emitter__`` and shown as live spinner lines above the
         message.
         """
-        messages: list[dict] = body.get("messages", [])
         # Open WebUI sends a stable chat-id for the whole conversation.
         session_id: str = body.get("chat_id") or str(uuid.uuid4())
-        user_message = self._last_user_message(messages)
 
         if not user_message:
             yield "Bitte gib eine Nachricht ein."
