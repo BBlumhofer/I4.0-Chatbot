@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import LennyPng from "@/components/icons/lenny_laster.png";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { ChevronDown, ChevronUp, Brain, SquarePen, LoaderCircle } from "lucide-react";
 
 type ChatResponse = {
   session_id: string;
@@ -21,7 +24,104 @@ type ChatMessage = {
   id: string;
   role: "user" | "assistant";
   text: string;
+  thinking?: string;
+  isThinkingStreaming?: boolean;
 };
+
+/** Extracts <think>…</think> content from a string. */
+function extractThinkingAndText(content: string): {
+  thinking: string | null;
+  isThinkingStreaming: boolean;
+  text: string;
+} {
+  const completeMatch = content.match(/^<think>([\s\S]*?)<\/think>\s*/);
+  if (completeMatch) {
+    return {
+      thinking: completeMatch[1].trim(),
+      isThinkingStreaming: false,
+      text: content.slice(completeMatch[0].length),
+    };
+  }
+  const openMatch = content.match(/^<think>([\s\S]*)$/);
+  if (openMatch) {
+    return { thinking: openMatch[1], isThinkingStreaming: true, text: "" };
+  }
+  return { thinking: null, isThinkingStreaming: false, text: content };
+}
+
+function ThinkingBlock({
+  content,
+  isStreaming,
+}: {
+  content: string;
+  isStreaming?: boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="mb-2 overflow-hidden rounded-xl border border-purple-200 bg-purple-50">
+      <button
+        type="button"
+        onClick={() => setIsOpen((o) => !o)}
+        className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-purple-700 transition-colors hover:bg-purple-100"
+      >
+        <Brain className="size-4 shrink-0" />
+        {isStreaming ? (
+          <span className="flex items-center gap-1.5">
+            Thinking
+            <span className="inline-flex gap-0.5">
+              <span className="size-1.5 animate-bounce rounded-full bg-purple-500" style={{ animationDelay: "0ms" }} />
+              <span className="size-1.5 animate-bounce rounded-full bg-purple-500" style={{ animationDelay: "150ms" }} />
+              <span className="size-1.5 animate-bounce rounded-full bg-purple-500" style={{ animationDelay: "300ms" }} />
+            </span>
+          </span>
+        ) : (
+          <span>Thought for a moment</span>
+        )}
+        <span className="ml-auto">
+          {isOpen ? <ChevronUp className="size-4" /> : <ChevronDown className="size-4" />}
+        </span>
+      </button>
+      {isOpen && (
+        <div className="border-t border-purple-200 px-4 py-3 text-sm text-purple-900 whitespace-pre-wrap">
+          {content}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MessageBubble({ message }: { message: ChatMessage }) {
+  if (message.role === "user") {
+    return (
+      <article className="ml-auto max-w-[85%] rounded-2xl bg-zinc-900 px-4 py-3 text-white">
+        <p className="whitespace-pre-wrap text-sm">{message.text}</p>
+      </article>
+    );
+  }
+
+  const { thinking, isThinkingStreaming, text: visibleText } = extractThinkingAndText(
+    message.text,
+  );
+  // Also respect pre-extracted thinking from streaming
+  const finalThinking = message.thinking !== undefined ? message.thinking : thinking;
+  const finalIsStreaming = message.isThinkingStreaming !== undefined ? message.isThinkingStreaming : isThinkingStreaming;
+  const finalText = message.thinking !== undefined ? message.text : visibleText;
+
+  return (
+    <article className="mr-auto max-w-[85%]">
+      {finalThinking !== null && finalThinking !== undefined && (
+        <ThinkingBlock content={finalThinking} isStreaming={finalIsStreaming} />
+      )}
+      {finalText && (
+        <div className="rounded-2xl bg-white px-4 py-3 text-zinc-900 shadow-sm">
+          <div className="prose prose-sm max-w-none text-sm">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{finalText}</ReactMarkdown>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
 
 export default function DemoPage(): React.ReactNode {
   const [input, setInput] = useState("");
@@ -31,6 +131,11 @@ export default function DemoPage(): React.ReactNode {
   const [awaitingConfirmation, setAwaitingConfirmation] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [liveStatuses, setLiveStatuses] = useState<string[]>([]);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, liveStatuses]);
 
   const canSend = useMemo(
     () => input.trim().length > 0 && !isLoading,
@@ -74,16 +179,19 @@ export default function DemoPage(): React.ReactNode {
     return id;
   }
 
-  function appendToMessage(messageId: string, delta: string) {
+  /** Update streaming message, extracting thinking on the fly */
+  function updateStreamingMessage(messageId: string, fullText: string) {
     setMessages((prev) =>
-      prev.map((m) =>
-        m.id === messageId
-          ? {
-              ...m,
-              text: `${m.text}${delta}`,
-            }
-          : m,
-      ),
+      prev.map((m) => {
+        if (m.id !== messageId) return m;
+        const { thinking, isThinkingStreaming, text } = extractThinkingAndText(fullText);
+        return {
+          ...m,
+          text: thinking !== null ? text : fullText,
+          thinking: thinking !== null ? thinking : undefined,
+          isThinkingStreaming: thinking !== null ? isThinkingStreaming : undefined,
+        };
+      }),
     );
   }
 
@@ -150,6 +258,7 @@ export default function DemoPage(): React.ReactNode {
     const decoder = new TextDecoder();
     let buffer = "";
     let finalEvent: StreamFinalEvent | null = null;
+    let accumulatedText = "";
 
     while (true) {
       const { done, value } = await reader.read();
@@ -170,9 +279,11 @@ export default function DemoPage(): React.ReactNode {
             if (evt.event === "status" && parsed.message) {
               pushStatus(parsed.message);
             } else if (evt.event === "chunk" && parsed.delta) {
-              appendToMessage(assistantMessageId, parsed.delta);
+              accumulatedText += parsed.delta;
+              updateStreamingMessage(assistantMessageId, accumulatedText);
             } else if (evt.event === "confirmation" && parsed.message) {
-              appendToMessage(assistantMessageId, parsed.message);
+              accumulatedText += parsed.message;
+              updateStreamingMessage(assistantMessageId, accumulatedText);
             } else if (evt.event === "final") {
               finalEvent = parsed as StreamFinalEvent;
             } else if (evt.event === "error") {
@@ -207,12 +318,15 @@ export default function DemoPage(): React.ReactNode {
       const data = await streamChat(message, assistantMessageId);
       setSessionId(data.session_id);
       if (data.response) {
+        const { thinking, isThinkingStreaming, text } = extractThinkingAndText(data.response);
         setMessages((prev) =>
           prev.map((m) =>
             m.id === assistantMessageId
               ? {
                   ...m,
-                  text: data.response,
+                  text: thinking !== null ? text : data.response,
+                  thinking: thinking !== null ? thinking : undefined,
+                  isThinkingStreaming: thinking !== null ? isThinkingStreaming : undefined,
                 }
               : m,
           ),
@@ -274,127 +388,130 @@ export default function DemoPage(): React.ReactNode {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col p-4 md:p-6">
-      <header className="mb-4 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <Image
-              src={LennyPng}
-              alt="Lenny der Laster"
-              width={140}
-              height={60}
-              className="mb-2 h-12 w-auto"
-              priority
-            />
-            <h1 className="text-xl font-semibold">I4.0 Chatbot</h1>
-            <p className="mt-1 text-sm text-zinc-600">
-              Diese UI nutzt die FastAPI-Endpunkte `/chat/stream` und `/chat/confirm`.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={() => void onNewChat()}
-            disabled={isLoading}
-            className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Neuer Chat
-          </button>
+    <div className="flex h-screen w-full flex-col overflow-hidden">
+      {/* Top navigation */}
+      <header className="flex h-14 shrink-0 items-center justify-between border-b bg-white px-4 shadow-sm" style={{ borderColor: "#32b9b4" }}>
+        <div className="flex items-center gap-2">
+          <Image
+            src={LennyPng}
+            alt="Lenny der Laster"
+            width={140}
+            height={60}
+            className="h-9 w-auto"
+            priority
+          />
+          <span className="hidden text-lg font-semibold sm:block" style={{ color: "#1b567c" }}>
+            I4.0 Chatbot
+          </span>
         </div>
+        <button
+          type="button"
+          onClick={() => void onNewChat()}
+          disabled={isLoading}
+          className="flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm text-zinc-800 disabled:cursor-not-allowed disabled:opacity-50 hover:bg-zinc-50"
+        >
+          <SquarePen className="size-4" />
+          <span className="hidden sm:inline">Neuer Chat</span>
+        </button>
       </header>
 
-      <section className="mb-4 flex-1 overflow-y-auto rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+      {/* Messages area */}
+      <section className="flex-1 overflow-y-auto bg-zinc-50 px-4 py-4">
         {messages.length === 0 ? (
-          <p className="text-sm text-zinc-500">Stelle eine Frage, um zu starten.</p>
+          <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
+            <Image src={LennyPng} alt="Lenny der Laster" width={120} height={60} className="h-20 w-auto" />
+            <p className="text-xl font-semibold" style={{ color: "#1b567c" }}>Wie kann ich helfen?</p>
+            <p className="text-sm text-zinc-500">Stelle eine Frage, um zu starten.</p>
+          </div>
         ) : (
-          <div className="space-y-3">
+          <div className="mx-auto max-w-3xl space-y-4">
             {messages.map((m) => (
-              <article
-                key={m.id}
-                className={
-                  m.role === "user"
-                    ? "ml-auto max-w-[85%] rounded-2xl bg-zinc-900 px-4 py-3 text-white"
-                    : "mr-auto max-w-[85%] rounded-2xl bg-white px-4 py-3 text-zinc-900 shadow-sm"
-                }
-              >
-                <p className="whitespace-pre-wrap text-sm">{m.text}</p>
-              </article>
+              <MessageBubble key={m.id} message={m} />
             ))}
+            <div ref={bottomRef} />
           </div>
         )}
       </section>
 
-      {error ? (
-        <div className="mb-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-          {error}
-        </div>
-      ) : null}
+      {/* Status / error banners */}
+      <div className="mx-auto w-full max-w-3xl px-4">
+        {error ? (
+          <div className="mb-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        ) : null}
 
-      {isLoading && liveStatuses.length > 0 ? (
-        <div className="mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 p-3">
-          <span className="mr-2 text-sm font-medium text-blue-900">Live:</span>
-          {liveStatuses.map((status, idx) => (
-            <span
-              key={`${status}-${idx}`}
-              className="rounded-full border border-blue-300 bg-white px-2.5 py-1 text-xs text-blue-900"
+        {isLoading && liveStatuses.length > 0 ? (
+          <div className="mb-3 flex flex-wrap items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 p-3">
+            <span className="mr-2 text-sm font-medium text-blue-900">Live:</span>
+            {liveStatuses.map((status, idx) => (
+              <span
+                key={`${status}-${idx}`}
+                className="rounded-full border border-blue-300 bg-white px-2.5 py-1 text-xs text-blue-900"
+              >
+                {statusIcon(status)} {status}
+              </span>
+            ))}
+          </div>
+        ) : null}
+
+        {isLoading && liveStatuses.length === 0 ? (
+          <div className="mb-3 flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
+            <LoaderCircle className="size-4 animate-spin" />
+            Antwort wird vorbereitet ...
+          </div>
+        ) : null}
+
+        {awaitingConfirmation ? (
+          <div className="mb-3 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3">
+            <p className="mr-auto text-sm text-amber-900">Bestätigung erforderlich.</p>
+            <button
+              type="button"
+              onClick={() => onConfirm(false)}
+              disabled={isLoading}
+              className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm disabled:opacity-50"
             >
-              {statusIcon(status)} {status}
-            </span>
-          ))}
-        </div>
-      ) : null}
+              Abbrechen
+            </button>
+            <button
+              type="button"
+              onClick={() => onConfirm(true)}
+              disabled={isLoading}
+              className="rounded-lg bg-zinc-900 px-3 py-1.5 text-sm text-white disabled:opacity-50"
+            >
+              Bestätigen
+            </button>
+          </div>
+        ) : null}
+      </div>
 
-      {isLoading && liveStatuses.length === 0 ? (
-        <div className="mb-3 rounded-xl border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
-          Antwort wird vorbereitet ...
-        </div>
-      ) : null}
-
-      {awaitingConfirmation ? (
-        <div className="mb-3 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3">
-          <p className="mr-auto text-sm text-amber-900">Bestätigung erforderlich.</p>
-          <button
-            type="button"
-            onClick={() => onConfirm(false)}
-            disabled={isLoading}
-            className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm disabled:opacity-50"
-          >
-            Abbrechen
-          </button>
-          <button
-            type="button"
-            onClick={() => onConfirm(true)}
-            disabled={isLoading}
-            className="rounded-lg bg-zinc-900 px-3 py-1.5 text-sm text-white disabled:opacity-50"
-          >
-            Bestätigen
-          </button>
-        </div>
-      ) : null}
-
+      {/* Input form */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           void onSend();
         }}
-        className="flex items-end gap-2"
+        className="mx-auto w-full max-w-3xl px-4 pb-4"
       >
-        <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleInputKeyDown}
-          placeholder="Nachricht eingeben..."
-          rows={3}
-          className="min-h-[52px] w-full resize-y rounded-xl border border-zinc-300 bg-white p-3 text-sm outline-none ring-zinc-400 focus:ring"
-        />
-        <button
-          type="submit"
-          disabled={!canSend}
-          className="h-[52px] rounded-xl bg-zinc-900 px-5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {isLoading ? "Sende..." : "Senden"}
-        </button>
+        <div className="flex items-end gap-2 rounded-2xl border border-zinc-300 bg-white p-2 shadow-sm">
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleInputKeyDown}
+            placeholder="Nachricht eingeben..."
+            rows={1}
+            className="min-h-[44px] flex-1 resize-none bg-transparent p-2 text-sm outline-none"
+          />
+          <button
+            type="submit"
+            disabled={!canSend}
+            className="h-10 rounded-xl px-4 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            style={{ backgroundColor: "#1b567c" }}
+          >
+            {isLoading ? <LoaderCircle className="size-4 animate-spin" /> : "Senden"}
+          </button>
+        </div>
       </form>
-    </main>
+    </div>
   );
 }

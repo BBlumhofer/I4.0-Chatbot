@@ -18,8 +18,8 @@ import { TooltipIconButton } from "./tooltip-icon-button";
 import {
   ArrowDown,
   LoaderCircle,
-  PanelRightOpen,
-  PanelRightClose,
+  PanelLeftOpen,
+  PanelLeftClose,
   SquarePen,
   XIcon,
   Plus,
@@ -31,7 +31,6 @@ import { toast } from "sonner";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
-import { GitHubSVG } from "../icons/github";
 import {
   Tooltip,
   TooltipContent,
@@ -90,6 +89,56 @@ function ScrollToBottom(props: { className?: string }) {
 
 function OpenGitHubRepo() {
   return null;
+}
+
+function TopNav({
+  chatHistoryOpen,
+  setChatHistoryOpen,
+  onNewChat,
+}: {
+  chatHistoryOpen: boolean;
+  setChatHistoryOpen: (v: boolean | ((p: boolean) => boolean)) => void;
+  onNewChat: () => void;
+}) {
+  return (
+    <div
+      className="flex h-14 shrink-0 items-center justify-between border-b bg-white px-4 shadow-sm"
+      style={{ borderColor: "var(--border)" }}
+    >
+      {/* Left: sidebar toggle */}
+      <TooltipIconButton
+        tooltip={chatHistoryOpen ? "Close history" : "Open history"}
+        variant="ghost"
+        onClick={() => setChatHistoryOpen((p) => !p)}
+      >
+        {chatHistoryOpen ? (
+          <PanelLeftClose className="size-5" />
+        ) : (
+          <PanelLeftOpen className="size-5" />
+        )}
+      </TooltipIconButton>
+
+      {/* Center: brand */}
+      <div className="flex items-center gap-2">
+        <Image
+          src={LennyPng}
+          alt="Lenny der Laster"
+          width={120}
+          height={80}
+          className="h-9 w-auto"
+        />
+        <span className="hidden text-lg font-semibold sm:block" style={{ color: "var(--primary-color)" }}>
+          I4.0 Chatbot
+        </span>
+      </div>
+
+      {/* Right: new chat */}
+      <Button variant="ghost" size="sm" onClick={onNewChat} className="gap-2">
+        <SquarePen className="size-4" />
+        <span className="hidden sm:inline">New Chat</span>
+      </Button>
+    </div>
+  );
 }
 
 export function Thread() {
@@ -237,165 +286,168 @@ export function Thread() {
   );
 
   return (
-    <div className="flex h-screen w-full overflow-hidden">
-      <div className="relative hidden lg:flex">
-        <motion.div
-          className="absolute z-20 h-full overflow-hidden border-r bg-white"
-          style={{ width: 300 }}
-          animate={
-            isLargeScreen
-              ? { x: chatHistoryOpen ? 0 : -300 }
-              : { x: chatHistoryOpen ? 0 : -300 }
-          }
-          initial={{ x: -300 }}
-          transition={
-            isLargeScreen
-              ? { type: "spring", stiffness: 300, damping: 30 }
-              : { duration: 0 }
-          }
-        >
-          <div
-            className="relative h-full"
+    <div className="flex h-screen w-full flex-col overflow-hidden">
+      {/* Top navigation bar */}
+      <TopNav
+        chatHistoryOpen={chatHistoryOpen ?? false}
+        setChatHistoryOpen={setChatHistoryOpen}
+        onNewChat={() => setThreadId(null)}
+      />
+
+      <div className="relative flex flex-1 overflow-hidden">
+        {/* Sidebar overlay for large screens */}
+        <div className="relative hidden lg:flex">
+          <motion.div
+            className="absolute z-20 h-full overflow-hidden border-r bg-white"
             style={{ width: 300 }}
+            animate={
+              isLargeScreen
+                ? { x: chatHistoryOpen ? 0 : -300 }
+                : { x: chatHistoryOpen ? 0 : -300 }
+            }
+            initial={{ x: -300 }}
+            transition={
+              isLargeScreen
+                ? { type: "spring", stiffness: 300, damping: 30 }
+                : { duration: 0 }
+            }
           >
-            <ThreadHistory />
-          </div>
-        </motion.div>
-      </div>
+            <div
+              className="relative h-full"
+              style={{ width: 300 }}
+            >
+              <ThreadHistory />
+            </div>
+          </motion.div>
+        </div>
 
-      <div
-        className={cn(
-          "grid w-full grid-cols-[1fr_0fr] transition-all duration-500",
-          artifactOpen && "grid-cols-[3fr_2fr]",
-        )}
-      >
-        <motion.div
+        <div
           className={cn(
-            "relative flex min-w-0 flex-1 flex-col overflow-hidden",
-            !chatStarted && "grid-rows-[1fr]",
+            "grid w-full grid-cols-[1fr_0fr] transition-all duration-500",
+            artifactOpen && "grid-cols-[3fr_2fr]",
           )}
-          layout={isLargeScreen}
-          animate={{
-            marginLeft: chatHistoryOpen ? (isLargeScreen ? 300 : 0) : 0,
-            width: chatHistoryOpen
-              ? isLargeScreen
-                ? "calc(100% - 300px)"
-                : "100%"
-              : "100%",
-          }}
-          transition={
-            isLargeScreen
-              ? { type: "spring", stiffness: 300, damping: 30 }
-              : { duration: 0 }
-          }
         >
-
-
-          <StickToBottom className="relative flex-1 overflow-hidden">
-            <StickyToBottomContent
-              className={cn(
-                "absolute inset-0 overflow-y-scroll px-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-transparent",
-                !chatStarted && "mt-[25vh] flex flex-col items-stretch",
-                chatStarted && "grid grid-rows-[1fr_auto]",
-              )}
-              contentClassName="pt-8 pb-16 max-w-3xl mx-auto flex flex-col gap-4 w-full"
-              content={
-                <>
-                  {messages
-                    .filter((m) => !m.id?.startsWith(DO_NOT_RENDER_ID_PREFIX))
-                    .map((message, index) =>
-                      message.type === "human" ? (
-                        <HumanMessage
-                          key={message.id || `${message.type}-${index}`}
-                          message={message}
-                          isLoading={isLoading}
-                        />
-                      ) : (
-                        <AssistantMessage
-                          key={message.id || `${message.type}-${index}`}
-                          message={message}
-                          isLoading={isLoading}
-                          handleRegenerate={handleRegenerate}
-                        />
-                      ),
+          <motion.div
+            className={cn(
+              "relative flex min-w-0 flex-1 flex-col overflow-hidden",
+              !chatStarted && "grid-rows-[1fr]",
+            )}
+            layout={isLargeScreen}
+            animate={{
+              marginLeft: chatHistoryOpen ? (isLargeScreen ? 300 : 0) : 0,
+              width: chatHistoryOpen
+                ? isLargeScreen
+                  ? "calc(100% - 300px)"
+                  : "100%"
+                : "100%",
+            }}
+            transition={
+              isLargeScreen
+                ? { type: "spring", stiffness: 300, damping: 30 }
+                : { duration: 0 }
+            }
+          >
+            <StickToBottom className="relative flex-1 overflow-hidden">
+              <StickyToBottomContent
+                className={cn(
+                  "absolute inset-0 overflow-y-scroll px-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-transparent",
+                  !chatStarted && "mt-[25vh] flex flex-col items-stretch",
+                  chatStarted && "grid grid-rows-[1fr_auto]",
+                )}
+                contentClassName="pt-8 pb-16 max-w-3xl mx-auto flex flex-col gap-4 w-full"
+                content={
+                  <>
+                    {messages
+                      .filter((m) => !m.id?.startsWith(DO_NOT_RENDER_ID_PREFIX))
+                      .map((message, index) =>
+                        message.type === "human" ? (
+                          <HumanMessage
+                            key={message.id || `${message.type}-${index}`}
+                            message={message}
+                            isLoading={isLoading}
+                          />
+                        ) : (
+                          <AssistantMessage
+                            key={message.id || `${message.type}-${index}`}
+                            message={message}
+                            isLoading={isLoading}
+                            handleRegenerate={handleRegenerate}
+                          />
+                        ),
+                      )}
+                    {/* Special rendering case where there are no AI/tool messages, but there is an interrupt.
+                      We need to render it outside of the messages list, since there are no messages to render */}
+                    {hasNoAIOrToolMessages && !!stream.interrupt && (
+                      <AssistantMessage
+                        key="interrupt-msg"
+                        message={undefined}
+                        isLoading={isLoading}
+                        handleRegenerate={handleRegenerate}
+                      />
                     )}
-                  {/* Special rendering case where there are no AI/tool messages, but there is an interrupt.
-                    We need to render it outside of the messages list, since there are no messages to render */}
-                  {hasNoAIOrToolMessages && !!stream.interrupt && (
-                    <AssistantMessage
-                      key="interrupt-msg"
-                      message={undefined}
-                      isLoading={isLoading}
-                      handleRegenerate={handleRegenerate}
-                    />
-                  )}
-                  {isLoading && !firstTokenReceived && (
-                    <AssistantMessageLoading />
-                  )}
-                </>
-              }
-              footer={
-                <div className="sticky bottom-0 flex flex-col items-center gap-8 bg-white">
-                  {!chatStarted && (
-                    <div className="flex items-center gap-3">
-                      <Image src={LennyPng} alt="Lenny den Laseter" width={150} height={130} className="h-16 flex-shrink-0 w-auto" />
-                      <h1 className="text-2xl font-semibold tracking-tight">
-                        
-                      </h1>
-                    </div>
-                  )}
-
-                  <ScrollToBottom className="animate-in fade-in-0 zoom-in-95 absolute bottom-full left-1/2 mb-4 -translate-x-1/2" />
-
-                  <div
-                    ref={dropRef}
-                    className={cn(
-                      "bg-muted relative z-10 mx-auto mb-8 w-full max-w-3xl rounded-2xl shadow-xs transition-all",
-                      dragOver
-                        ? "border-primary border-2 border-dotted"
-                        : "border border-solid",
+                    {isLoading && !firstTokenReceived && (
+                      <AssistantMessageLoading />
                     )}
-                  >
-                    <form
-                      onSubmit={handleSubmit}
-                      className="mx-auto grid max-w-3xl grid-rows-[1fr_auto] gap-2"
+                  </>
+                }
+                footer={
+                  <div className="sticky bottom-0 flex flex-col items-center gap-4 bg-white">
+                    {!chatStarted && (
+                      <div className="flex flex-col items-center gap-2 pt-4">
+                        <Image
+                          src={LennyPng}
+                          alt="Lenny den Laseter"
+                          width={150}
+                          height={130}
+                          className="h-20 w-auto"
+                        />
+                        <h1 className="text-2xl font-semibold tracking-tight" style={{ color: "var(--primary-color)" }}>
+                          Wie kann ich helfen?
+                        </h1>
+                      </div>
+                    )}
+
+                    <ScrollToBottom className="animate-in fade-in-0 zoom-in-95 absolute bottom-full left-1/2 mb-4 -translate-x-1/2" />
+
+                    <div
+                      ref={dropRef}
+                      className={cn(
+                        "bg-muted relative z-10 mx-auto mb-8 w-full max-w-3xl rounded-2xl shadow-xs transition-all",
+                        dragOver
+                          ? "border-primary border-2 border-dotted"
+                          : "border border-solid",
+                      )}
                     >
-                      <ContentBlocksPreview
-                        blocks={contentBlocks}
-                        onRemove={removeBlock}
-                      />
-                      <textarea
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onPaste={handlePaste}
-                        onKeyDown={(e) => {
-                          if (
-                            e.key === "Enter" &&
-                            !e.shiftKey &&
-                            !e.metaKey &&
-                            !e.nativeEvent.isComposing
-                          ) {
-                            e.preventDefault();
-                            const el = e.target as HTMLElement | undefined;
-                            const form = el?.closest("form");
-                            form?.requestSubmit();
-                          }
-                        }}
-                        placeholder="Type your message..."
-                        className="field-sizing-content resize-none border-none bg-transparent p-3.5 pb-0 shadow-none ring-0 outline-none focus:ring-0 focus:outline-none"
-                      />
+                      <form
+                        onSubmit={handleSubmit}
+                        className="mx-auto grid max-w-3xl grid-rows-[1fr_auto] gap-2"
+                      >
+                        <ContentBlocksPreview
+                          blocks={contentBlocks}
+                          onRemove={removeBlock}
+                        />
+                        <textarea
+                          value={input}
+                          onChange={(e) => setInput(e.target.value)}
+                          onPaste={handlePaste}
+                          onKeyDown={(e) => {
+                            if (
+                              e.key === "Enter" &&
+                              !e.shiftKey &&
+                              !e.metaKey &&
+                              !e.nativeEvent.isComposing
+                            ) {
+                              e.preventDefault();
+                              const el = e.target as HTMLElement | undefined;
+                              const form = el?.closest("form");
+                              form?.requestSubmit();
+                            }
+                          }}
+                          placeholder="Type your message..."
+                          className="field-sizing-content resize-none border-none bg-transparent p-3.5 pb-0 shadow-none ring-0 outline-none focus:ring-0 focus:outline-none"
+                        />
 
-                      <div className="flex items-center gap-6 p-2 pt-4">
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          onClick={() => setThreadId(null)}
-                          className="flex items-center gap-2"
-                        >
-                          <SquarePen className="size-5" />
-                          Neuer Chat
-                        </Button>
-                        <div>
+                        <div className="flex items-center gap-4 p-2 pt-4">
                           <div className="flex items-center space-x-2">
                             <Switch
                               id="render-tool-calls"
@@ -409,66 +461,66 @@ export function Thread() {
                               Show Tool Calls
                             </Label>
                           </div>
-                        </div>
-                        <Label
-                          htmlFor="file-input"
-                          className="flex cursor-pointer items-center gap-2"
-                        >
-                          <Plus className="size-5 text-gray-600" />
-                          <span className="text-sm text-gray-600">
-                            Upload PDF or Image
-                          </span>
-                        </Label>
-                        <input
-                          id="file-input"
-                          type="file"
-                          onChange={handleFileUpload}
-                          multiple
-                          accept="image/jpeg,image/png,image/gif,image/webp,application/pdf"
-                          className="hidden"
-                        />
+                          <Label
+                            htmlFor="file-input"
+                            className="flex cursor-pointer items-center gap-2"
+                          >
+                            <Plus className="size-5 text-gray-600" />
+                            <span className="text-sm text-gray-600">
+                              Upload PDF or Image
+                            </span>
+                          </Label>
+                          <input
+                            id="file-input"
+                            type="file"
+                            onChange={handleFileUpload}
+                            multiple
+                            accept="image/jpeg,image/png,image/gif,image/webp,application/pdf"
+                            className="hidden"
+                          />
 
-                        {stream.isLoading ? (
-                          <Button
-                            key="stop"
-                            onClick={() => stream.stop()}
-                            className="ml-auto"
-                          >
-                            <LoaderCircle className="h-4 w-4 animate-spin" />
-                            Cancel
-                          </Button>
-                        ) : (
-                          <Button
-                            type="submit"
-                            className="ml-auto shadow-md transition-all"
-                            disabled={
-                              isLoading ||
-                              (!input.trim() && contentBlocks.length === 0)
-                            }
-                          >
-                            Send
-                          </Button>
-                        )}
-                      </div>
-                    </form>
+                          {stream.isLoading ? (
+                            <Button
+                              key="stop"
+                              onClick={() => stream.stop()}
+                              className="ml-auto"
+                            >
+                              <LoaderCircle className="h-4 w-4 animate-spin" />
+                              Cancel
+                            </Button>
+                          ) : (
+                            <Button
+                              type="submit"
+                              className="ml-auto shadow-md transition-all"
+                              disabled={
+                                isLoading ||
+                                (!input.trim() && contentBlocks.length === 0)
+                              }
+                            >
+                              Send
+                            </Button>
+                          )}
+                        </div>
+                      </form>
+                    </div>
                   </div>
-                </div>
-              }
-            />
-          </StickToBottom>
-        </motion.div>
-        <div className="relative flex flex-col border-l">
-          <div className="absolute inset-0 flex min-w-[30vw] flex-col">
-            <div className="grid grid-cols-[1fr_auto] border-b p-4">
-              <ArtifactTitle className="truncate overflow-hidden" />
-              <button
-                onClick={closeArtifact}
-                className="cursor-pointer"
-              >
-                <XIcon className="size-5" />
-              </button>
+                }
+              />
+            </StickToBottom>
+          </motion.div>
+          <div className="relative flex flex-col border-l">
+            <div className="absolute inset-0 flex min-w-[30vw] flex-col">
+              <div className="grid grid-cols-[1fr_auto] border-b p-4">
+                <ArtifactTitle className="truncate overflow-hidden" />
+                <button
+                  onClick={closeArtifact}
+                  className="cursor-pointer"
+                >
+                  <XIcon className="size-5" />
+                </button>
+              </div>
+              <ArtifactContent className="relative flex-grow" />
             </div>
-            <ArtifactContent className="relative flex-grow" />
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { parsePartialJson } from "@langchain/core/output_parsers";
 import { useStreamContext } from "@/providers/Stream";
 import { AIMessage, Checkpoint, Message } from "@langchain/langgraph-sdk";
-import { getContentString } from "../utils";
+import { getContentString, extractThinkingAndText } from "../utils";
 import { BranchSwitcher, CommandBar } from "./shared";
 import { MarkdownText } from "../markdown-text";
 import { LoadExternalComponent } from "@langchain/langgraph-sdk/react-ui";
@@ -16,6 +16,7 @@ import { GenericInterruptView } from "./generic-interrupt";
 import { useArtifact } from "../artifact";
 import Image from "next/image";
 import LennyPng from "@/components/icons/lenny_laster.png";
+import { ThinkingBlock } from "./thinking-block";
 
 function CustomComponent({
   message,
@@ -130,6 +131,17 @@ export function AssistantMessage({
     ? parseAnthropicStreamedToolCalls(content)
     : undefined;
 
+  // Structured thinking blocks (e.g. Anthropic extended thinking)
+  const structuredThinkingBlocks = Array.isArray(content)
+    ? (content as Array<Record<string, unknown>>).filter(
+        (c) => c.type === "thinking" && typeof c.thinking === "string",
+      ) as Array<{ type: string; thinking: string }>
+    : [];
+
+  // Inline thinking blocks from <think>…</think> tags (e.g. DeepSeek, Qwen)
+  const { thinking: inlineThinking, isThinkingStreaming, text: visibleText } =
+    extractThinkingAndText(contentString);
+
   const hasToolCalls =
     message &&
     "tool_calls" in message &&
@@ -166,7 +178,36 @@ export function AssistantMessage({
           </>
         ) : (
           <>
-            {contentString.length > 0 && (
+            {/* Structured thinking blocks (Anthropic extended thinking) */}
+            {structuredThinkingBlocks.map((block, idx) => (
+              <ThinkingBlock
+                key={`structured-thinking-${idx}`}
+                content={block.thinking}
+                isStreaming={false}
+              />
+            ))}
+
+            {/* Inline thinking from <think> tags */}
+            {inlineThinking !== null && (
+              <ThinkingBlock
+                content={inlineThinking}
+                isStreaming={isThinkingStreaming}
+              />
+            )}
+
+            {visibleText.length > 0 && (
+              <div className="py-1">
+                <div
+                  className="rounded-2xl p-3"
+                  style={{ background: "var(--primary-color)", color: "var(--primary-foreground, white)" }}
+                >
+                  <MarkdownText>{visibleText}</MarkdownText>
+                </div>
+              </div>
+            )}
+
+            {/* Fallback: show full contentString if no inline thinking and no structured blocks */}
+            {inlineThinking === null && structuredThinkingBlocks.length === 0 && contentString.length > 0 && (
               <div className="py-1">
                 <div
                   className="rounded-2xl p-3"
