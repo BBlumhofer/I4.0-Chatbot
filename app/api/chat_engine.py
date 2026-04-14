@@ -230,7 +230,7 @@ def execute_confirmed_tool(session_id: str) -> tuple[bool, str]:
         return True, f"Befehl ausgeführt: {result}"
     except Exception as exc:
         logger.exception("Confirmed tool execution failed: %s", exc)
-        return False, f"Fehler bei der Ausführung: {exc}"
+        return False, "Ausführung fehlgeschlagen. Bitte versuche es erneut."
 
 
 def cancel_pending_tool(session_id: str) -> None:

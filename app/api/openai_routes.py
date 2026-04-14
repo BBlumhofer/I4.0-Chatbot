@@ -191,12 +191,12 @@ def chat_completions(req: ChatCompletionRequest, request: Request):
     confirmation_reply = _is_confirmation_reply(user_text)
     if confirmation_reply is not None and _has_pending_confirmation(session_id):
         if confirmation_reply:
-            success, _detail = execute_confirmed_tool(session_id)
-            if success:
-                response_text = _detail
-            else:
-                logger.warning("Confirmed tool execution failed for session %s: %s", session_id, _detail)
-                response_text = "Ausführung fehlgeschlagen. Bitte versuche es erneut."
+            success, response_text = execute_confirmed_tool(session_id)
+            if not success:
+                logger.warning(
+                    "Confirmed tool execution failed for session %s; returning generic message",
+                    session_id,
+                )
         else:
             cancel_pending_tool(session_id)
             response_text = "Aktion abgebrochen."
