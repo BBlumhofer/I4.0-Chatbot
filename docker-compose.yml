@@ -28,18 +28,66 @@ services:
     depends_on:
       - redis
       - chroma
+    # Health check so dependent services wait until the API is truly ready.
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     restart: unless-stopped
 
-  agent-chat-ui:
-    build:
-      context: ./agent-chat-ui
-      dockerfile: Dockerfile
+  # ── Open WebUI Pipelines ─────────────────────────────────────────────────────
+  # The Pipelines service is the recommended production integration layer for
+  # custom agents in Open WebUI.  It loads ./pipelines/i4_chatbot_pipeline.py
+  # which translates Open WebUI requests into calls to our LangGraph backend
+  # and forwards status events so users see live thinking indicators.
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
     ports:
-      - "3001:3000"
+      - "9099:9099"
+    volumes:
+      - ./pipelines:/app/pipelines
     environment:
-      - API_URL=http://api:8000
+      - PIPELINES_DIR=/app/pipelines
+      # Allow the pipeline to reach our API.
+      - API_BASE_URL=http://api:8000
+      # Override PIPELINES_API_KEY on the host for a non-default secret.
+      - PIPELINES_API_KEY=${PIPELINES_API_KEY:-0p3n-w3bu!}
     depends_on:
-      - api
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9099/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  # ── Open WebUI ───────────────────────────────────────────────────────────────
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "3000:8080"
+    environment:
+      # Disable the built-in Ollama integration – we only use our custom backend.
+      - ENABLE_OLLAMA_API=false
+      # Point Open WebUI at the Pipelines service (OpenAI-compatible gateway).
+      # The Pipelines service connects to our FastAPI backend internally.
+      - OPENAI_API_BASE_URLS=http://pipelines:9099
+      # Default Pipelines authentication key.  Override in production via
+      # the PIPELINES_API_KEY environment variable on the host.
+      - OPENAI_API_KEYS=${PIPELINES_API_KEY:-0p3n-w3bu!}
+      # Disable user authentication for local/internal deployments.
+      - WEBUI_AUTH=false
+      # Persist settings and conversation history across restarts.
+      - DATA_DIR=/app/backend/data
+    volumes:
+      - open_webui_data:/app/backend/data
+    depends_on:
+      pipelines:
+        condition: service_healthy
     restart: unless-stopped
 
  # neo4j:
@@ -89,3 +137,5 @@ services:
 volumes:
   neo4j_data:
   chroma_data:
+  open_webui_data:
+
